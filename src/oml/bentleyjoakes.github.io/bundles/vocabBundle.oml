@@ -1,0 +1,4 @@
+description bundle <https://bentleyjoakes.github.io/bundles/vocabBundle#> as ^bundle {
+	
+	uses <https://bentleyjoakes.github.io/DTDF/vocab/DTDFVocab#>
+}

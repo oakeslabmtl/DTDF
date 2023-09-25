@@ -1,0 +1,8 @@
+description <https://bentleyjoakes.github.io/incubator/incubator_pt#> as incubator_pt {
+	
+	uses <https://bentleyjoakes.github.io/DTDF/vocab/DTDFVocab#> as DTDFVocab
+
+	instance pt : DTDFVocab:SystemUnderStudy
+	
+	instance incubator : DTDFVocab:System
+}

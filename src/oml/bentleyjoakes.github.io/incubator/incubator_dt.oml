@@ -1,0 +1,43 @@
+description <https://bentleyjoakes.github.io/incubator/incubator_dt#> as incubator {
+
+	uses <https://bentleyjoakes.github.io/DTDF/vocab/DTDFVocab#> as DTDFVocab
+	
+	extends <https://bentleyjoakes.github.io/DTDF/desc/baseDesc#> as baseDesc
+	
+	instance Incubator : DTDFVocab:DigitalTwin
+	
+	// SERVICES
+	instance real_time_viz : DTDFVocab:Service
+	instance real_time_adaptation : DTDFVocab:Service
+	instance what_if_sim : DTDFVocab:Service
+	
+	// ENABLERS
+	instance dashboard : DTDFVocab:Enabler
+	instance state_estimator : DTDFVocab:Enabler
+	instance simulator : DTDFVocab:Enabler
+	
+	// MODELS / DATA
+	instance temp_readings : DTDFVocab:Data
+	instance kalman_filter : DTDFVocab:Model
+	instance temp_prop_eqs : DTDFVocab:Model
+	
+
+	
+	// COMMUNICATION
+	instance dashboard_viz : DTDFVocab:Insight [
+		DTDFVocab:hasTimeScale baseDesc:slower_trt
+	]
+	
+	instance commands : DTDFVocab:Action [
+		DTDFVocab:IsAutomatic true
+		DTDFVocab:hasTimeScale baseDesc:rt
+	]
+	
+	instance temp_readings_trans : DTDFVocab:DataTransmitted [
+		DTDFVocab:IsAutomatic true
+		DTDFVocab:hasTimeScale baseDesc:rt
+	]
+	
+	
+	
+}

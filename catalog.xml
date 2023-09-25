@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" prefer="public">
+	<rewriteURI uriStartString="https://bentleyjoakes.github.io/" rewritePrefix="src/oml/bentleyjoakes.github.io/"/>
+	<rewriteURI uriStartString="https://bentleyjoakes.github.io/bundles" rewritePrefix="src/oml/bentleyjoakes.github.io/bundles"/>
+	<rewriteURI uriStartString="http://" rewritePrefix="build/oml/"/>
+</catalog>
