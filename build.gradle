@@ -37,7 +37,7 @@ ext {
     // Name of dataset (matches one used in .fuseki.ttl file)
     dataset = 'DTDF'
     // Root ontology IRI of the dataset
-    rootIri = 'https://bentleyjoakes.github.io/DTDF/desc/descBundle'
+    rootIri = 'https://bentleyjoakes.github.io/bundles/descBundle'
 }
 
 /*

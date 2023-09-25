@@ -1,4 +1,5 @@
-description bundle <https://bentleyjoakes.github.io/bundles/vocabBundle#> as ^bundle {
+vocabulary bundle <https://bentleyjoakes.github.io/bundles/vocabBundle#> as ^vbundle {
 	
-	uses <https://bentleyjoakes.github.io/DTDF/vocab/DTDFVocab#>
+	includes <https://bentleyjoakes.github.io/DTDF/vocab/DTDFVocab#>
+	includes <https://bentleyjoakes.github.io/domains/state_estimation/stateEstimationVocab#>
 }

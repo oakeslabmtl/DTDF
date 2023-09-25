@@ -4,27 +4,21 @@ vocabulary <https://bentleyjoakes.github.io/DTDF/vocab/DTDFVocab#> as DTDFVocab 
 	
 	extends<https://bentleyjoakes.github.io/DTDF/vocab/base#> as base
 	
-	concept DigitalTwin
-	
-	concept Layer < base:ContainedElement
-	
-	concept ModelsDataLayer < Layer
-	concept EnablersLayer < Layer
-	concept ServicesLayer < Layer
-	
+	concept DigitalTwin < base:ContainedElement
+
 	concept Model < base:ContainedElement  [
-		restricts all base:isContainedIn to ModelsDataLayer
+		restricts all base:isContainedIn to DigitalTwin
 	]
 	concept Data < base:ContainedElement  [
-		restricts all base:isContainedIn to ModelsDataLayer
+		restricts all base:isContainedIn to DigitalTwin
 	]
 	
 	concept Enabler < base:ContainedElement  [
-		restricts all base:isContainedIn to EnablersLayer
+		restricts all base:isContainedIn to DigitalTwin
 	]
 	
 	concept Service < base:ContainedElement  [
-		restricts all base:isContainedIn to ServicesLayer
+		restricts all base:isContainedIn to DigitalTwin
 	]
 	
 	

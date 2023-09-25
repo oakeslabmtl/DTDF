@@ -1,0 +1,49 @@
+vocabulary <https://bentleyjoakes.github.io/domains/state_estimation/stateEstimationVocab#> as stateEstimationVocab {
+	
+	
+	concept StateEstimation
+	concept StateEstimationImplementer
+	
+	relation entity Implements [
+		from StateEstimation
+		to StateEstimationImplementer
+		forward implements
+	]
+	
+	
+	concept Variable
+	
+	concept StateVariable < Variable
+	
+	concept HiddenStateVariable < StateVariable
+	concept ObservedStateVariable < StateVariable
+	
+	concept Parameter
+	concept Constant
+	
+	concept Value
+	concept InitialValue < Value
+	
+	concept Input
+	concept Output
+	
+	concept Covariance
+	
+	concept Noise
+	
+	concept Function
+	concept StateTransitionFunction < Function
+	concept MeasurementFunction < Function
+	
+	relation entity FunctionNoise [
+		from Function
+		to Noise
+		forward hasNoise
+		functional
+	]
+	
+	concept KalmanFilter < StateEstimationImplementer
+	
+	
+	
+}

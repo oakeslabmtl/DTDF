@@ -3,8 +3,13 @@ description <https://bentleyjoakes.github.io/incubator/incubator_dt#> as incubat
 	uses <https://bentleyjoakes.github.io/DTDF/vocab/DTDFVocab#> as DTDFVocab
 	
 	extends <https://bentleyjoakes.github.io/DTDF/desc/baseDesc#> as baseDesc
+
+	uses <https://bentleyjoakes.github.io/DTDF/vocab/base#> as base
+
+	extends <https://bentleyjoakes.github.io/incubator/incubatorKalmanFilter#> as incubatorKalmanFilter
+
 	
-	instance Incubator : DTDFVocab:DigitalTwin
+	instance IncubatorDT : DTDFVocab:DigitalTwin
 	
 	// SERVICES
 	instance real_time_viz : DTDFVocab:Service
@@ -18,8 +23,11 @@ description <https://bentleyjoakes.github.io/incubator/incubator_dt#> as incubat
 	
 	// MODELS / DATA
 	instance temp_readings : DTDFVocab:Data
-	instance kalman_filter : DTDFVocab:Model
 	instance temp_prop_eqs : DTDFVocab:Model
+	
+	ref instance IncubatorDT [
+		base:contains incubatorKalmanFilter:kalman_filter
+	]
 	
 
 	
