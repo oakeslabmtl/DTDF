@@ -1,27 +1,14 @@
 vocabulary <https://bentleyjoakes.github.io/DTDF/vocab/DTDFVocab#> as DTDFVocab {
 	
 	extends <http://www.w3.org/2001/XMLSchema#> as xsd
+	extends <http://www.w3.org/2000/01/rdf-schema#> as rdfs
 	
 	extends<https://bentleyjoakes.github.io/DTDF/vocab/base#> as base
 	
-	concept DigitalTwin < base:ContainedElement
-
-	concept Model < base:ContainedElement  [
-		restricts all base:isContainedIn to DigitalTwin
-	]
-	concept Data < base:ContainedElement  [
-		restricts all base:isContainedIn to DigitalTwin
-	]
+	concept DigitalTwin
 	
-	concept Enabler < base:ContainedElement  [
-		restricts all base:isContainedIn to DigitalTwin
-	]
-	
-	concept Service < base:ContainedElement  [
-		restricts all base:isContainedIn to DigitalTwin
-	]
-	
-	
+	//------------------------------
+	// C1: SystemUnderStudy
 	concept SystemUnderStudy
 	relation entity HasSystem [
 		from SystemUnderStudy
@@ -39,44 +26,70 @@ vocabulary <https://bentleyjoakes.github.io/DTDF/vocab/DTDFVocab#> as DTDFVocab 
 		forward hasAgent
 	]  
 	
-	concept System
-	concept Environment
-	concept Agent
-	
-	concept ActingComponent
-	relation entity HasActingComponent [
-		from SystemUnderStudy
-		to ActingComponent
-		forward hasActingComponent
+	concept System < base:ContainedElement
+	scalar property Purpose [
+		domain System, DigitalTwin
+		range xsd:string 
 	]
+	
+	concept Environment < base:DescribedThing, base:ContainedElement
+	concept Agent < base:DescribedThing
+	concept Component < base:DescribedThing, base:ContainedElement
+	
+	//------------------------------
+	// C2: ActingComponents
+	
+	concept ActingComponent < Component
 
-	concept SensingComponent
-	relation entity HasSensingComponent [
-		from SystemUnderStudy
-		to SensingComponent
-		forward hasSensingComponent
-	]
+	//------------------------------
+	// C3: SensingComponents
+	concept SensingComponent < Component
 	
+	//------------------------------
+	// C4: Multiplicity
 	scalar property multiplicity [
 		domain DigitalTwin, SystemUnderStudy
 		range xsd:integer
 		functional
 	]
 	
+	//------------------------------
+	// C5: Data Transmitted
 	concept DataTransmitted
 	
 	// relations from sensor to data transmitted
 	// relations from data transmitted to data on DT side
 	
+	//------------------------------
+	// C6: Insights/Actions
 	concept Insight
 	concept Action
 	
-	scalar property IsAutomatic [
-		domain DataTransmitted, Action
-		range xsd:boolean
-		functional
+	relation entity Provides [
+		from Service
+		to Insight, Action
+		forward provides
+		reverse providedBy
 	]
 	
+	//------------------------------
+	// C7: Services
+	concept Service
+	
+	//------------------------------
+	// C8: Enablers
+	concept Enabler
+	
+	//------------------------------
+	// C9: Models/Data
+	concept Model 
+	concept Data
+	
+	//------------------------------
+	// C10: Constellation
+	
+	//------------------------------
+	// C11: TimeScale
 	concept TimeScale < base:DescribedThing
 	relation entity HasTimeScale [
 		from DataTransmitted, Insight, Action, Enabler
@@ -84,15 +97,35 @@ vocabulary <https://bentleyjoakes.github.io/DTDF/vocab/DTDFVocab#> as DTDFVocab 
 		forward hasTimeScale
 	]
 	
+	//------------------------------
+	// C12: FidelityConsideration
 	concept FidelityConsideration < base:DescribedThing
 	
+	//------------------------------
+	// C13: LifeCycleStage
 	concept LifeCycleStage < base:DescribedThing
+	relation entity AtStage [
+		from Service
+		to LifeCycleStage
+		forward atStage
+		reverse providedService
+	]
 	
+	//------------------------------
+	// C14: EvolutionStage
 	concept EvolutionStage < base:DescribedThing
 	relation entity nextEvoStage [
 		from EvolutionStage
 		to EvolutionStage
 		forward nextStage
 		irreflexive
+	]
+	
+	//------------------
+	// Multi-characteristic concepts
+		scalar property IsAutomatic [
+		domain DataTransmitted, Action
+		range xsd:boolean
+		functional
 	]
 }

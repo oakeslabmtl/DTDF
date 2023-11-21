@@ -14,5 +14,7 @@ description <https://bentleyjoakes.github.io/DTDF/desc/baseDesc#> as baseDesc {
 		base:desc "Faster than real-time"
 	]
 	
+	// LIFE-CYCLE STAGES
+	instance operation : DTDFVocab:LifeCycleStage
 	
 }

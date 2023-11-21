@@ -9,27 +9,58 @@ description <https://bentleyjoakes.github.io/incubator/incubator_dt#> as incubat
 	extends <https://bentleyjoakes.github.io/incubator/incubatorKalmanFilter#> as incubatorKalmanFilter
 
 	
-	instance IncubatorDT : DTDFVocab:DigitalTwin
-	
-	// SERVICES
-	instance real_time_viz : DTDFVocab:Service
-	instance real_time_adaptation : DTDFVocab:Service
-	instance what_if_sim : DTDFVocab:Service
-	
-	// ENABLERS
-	instance dashboard : DTDFVocab:Enabler
-	instance state_estimator : DTDFVocab:Enabler
-	instance simulator : DTDFVocab:Enabler
-	
-	// MODELS / DATA
-	instance temp_readings : DTDFVocab:Data
-	instance temp_prop_eqs : DTDFVocab:Model
-	
-	ref instance IncubatorDT [
-		base:contains incubatorKalmanFilter:kalman_filter
+	instance IncubatorDT : DTDFVocab:DigitalTwin [
+		DTDFVocab:Purpose "enhance the functionality of the PT through the DT services"
+		
+		DTDFVocab:multiplicity 1
 	]
 	
-
+	// SERVICES
+	instance real_time_viz_service : DTDFVocab:Service[
+		DTDFVocab:provides real_time_viz
+		DTDFVocab:atStage baseDesc:operation
+	]
+	instance anomaly_detector : DTDFVocab:Service [
+		DTDFVocab:provides anomaly_warning
+		DTDFVocab:atStage baseDesc:operation
+	]
+	instance what_if_sim : DTDFVocab:Service [
+		DTDFVocab:provides what_if_sim_results
+		DTDFVocab:atStage baseDesc:operation
+	]
+	instance safe_adaptation : DTDFVocab:Service [
+		DTDFVocab:provides controller_control
+		DTDFVocab:atStage baseDesc:operation
+	]
+	instance policy_optimization : DTDFVocab:Service [
+		DTDFVocab:provides controller_control
+		DTDFVocab:atStage baseDesc:operation
+	]
+	
+	// ENABLERS
+	instance simulator : DTDFVocab:Enabler
+	instance anomaly_detector_enabler : DTDFVocab:Enabler
+	instance state_estimator : DTDFVocab:Enabler
+	instance optimization_algs : DTDFVocab:Enabler
+	instance dashboard_enabler : DTDFVocab:Enabler
+	
+	// MODELS / DATA
+	
+	instance two_para_model : DTDFVocab:Model
+	instance four_para_model : DTDFVocab:Model
+	instance ANN_model : DTDFVocab:Model
+	instance ANN_state_estimation_model : DTDFVocab:Model
+	instance controller_model : DTDFVocab:Model
+	instance pt_model : DTDFVocab:Model
+	instance env_model : DTDFVocab:Model
+	instance pt_and_env_model : DTDFVocab:Model
+	
+	instance temp_readings : DTDFVocab:Data
+	
+	
+	ref instance IncubatorDT [
+		//base:contains incubatorKalmanFilter:kalman_filter
+	]
 	
 	// COMMUNICATION
 	instance dashboard_viz : DTDFVocab:Insight [
@@ -46,6 +77,23 @@ description <https://bentleyjoakes.github.io/incubator/incubator_dt#> as incubat
 		DTDFVocab:hasTimeScale baseDesc:rt
 	]
 	
+	
+	// INSIGHTS/ACTIONS
+	instance dashboard : DTDFVocab:Insight[
+		DTDFVocab:hasTimeScale baseDesc:slower_trt
+	]
+	instance anomaly_warning : DTDFVocab:Insight[
+		DTDFVocab:hasTimeScale baseDesc:slower_trt
+	]
+	instance real_time_viz : DTDFVocab:Insight [
+		DTDFVocab:hasTimeScale baseDesc:rt
+	]
+	instance controller_control : DTDFVocab:Action [
+		DTDFVocab:hasTimeScale baseDesc:rt
+	]
+	instance what_if_sim_results : DTDFVocab:Insight [
+		DTDFVocab:hasTimeScale baseDesc:faster_trt
+	]
 	
 	
 }

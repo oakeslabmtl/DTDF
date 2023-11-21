@@ -2,7 +2,51 @@ description <https://bentleyjoakes.github.io/incubator/incubator_pt#> as incubat
 	
 	uses <https://bentleyjoakes.github.io/DTDF/vocab/DTDFVocab#> as DTDFVocab
 
-	instance pt : DTDFVocab:SystemUnderStudy
+	uses <https://bentleyjoakes.github.io/DTDF/vocab/base#> as base
+
+	instance pt : DTDFVocab:SystemUnderStudy [
+		DTDFVocab:multiplicity 1
+		DTDFVocab:hasSystem incubator
+		DTDFVocab:hasAgent user
+		DTDFVocab:hasEnvironment room
+	]
 	
-	instance incubator : DTDFVocab:System
+	instance incubator : DTDFVocab:System[
+		DTDFVocab:Purpose "maintain a specific temperature within the incubator’s chamber"
+		base:contains power_supply
+	]
+	
+	instance controller : DTDFVocab:ActingComponent[
+		base:desc "Controls the fan and heater"
+	]
+	
+	instance power_supply : DTDFVocab:Component[
+		base:desc "Powers electrical components"
+	]
+	instance fan : DTDFVocab:Component[
+		base:desc "Circulates air throughout box"
+	]
+	instance heater : DTDFVocab:Component[
+		base:desc "Raises the temperature of surrounding air"
+	]
+	
+	// Two inside box, one outside
+	instance temp_sensor_1 : DTDFVocab:SensingComponent
+	instance temp_sensor_2 : DTDFVocab:SensingComponent
+	instance temp_sensor_3 : DTDFVocab:SensingComponent
+	
+	instance user : DTDFVocab:Agent [
+		base:desc "Can manually operate the lid"
+	]
+	
+	instance room : DTDFVocab:Environment [
+		base:contains surface
+		base:contains surrounding_air
+	]
+	instance surface : DTDFVocab:Component [
+		base:desc "Where the incubator is placed"
+	]
+	instance surrounding_air : DTDFVocab:Component [
+		base:desc "Heat sink"
+	]
 }
