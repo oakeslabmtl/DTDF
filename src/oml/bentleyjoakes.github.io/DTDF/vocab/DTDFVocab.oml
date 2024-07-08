@@ -59,6 +59,12 @@ vocabulary <https://bentleyjoakes.github.io/DTDF/vocab/DTDFVocab#> as DTDFVocab 
 	
 	// relations from sensor to data transmitted
 	// relations from data transmitted to data on DT side
+	relation entity DataInput [
+		from DataTransmitted
+		to Data
+		forward asData
+		reverse fromData
+	]
 	
 	//------------------------------
 	// C6: Insights/Actions
@@ -80,10 +86,30 @@ vocabulary <https://bentleyjoakes.github.io/DTDF/vocab/DTDFVocab#> as DTDFVocab 
 	// C8: Enablers
 	concept Enabler
 	
+	relation entity Enables [
+		from Enabler
+		to Service
+		forward enables
+		reverse enabledBy
+	]
+	
+	scalar property IsCommEnabler [
+		domain Enabler
+		range xsd:boolean
+		functional
+	]
+	
 	//------------------------------
 	// C9: Models/Data
-	concept Model 
+	concept Model
 	concept Data
+	
+	relation entity InputTo [
+		from Model, Data
+		to Enabler
+		forward inputTo
+		reverse hasInput
+	]
 	
 	//------------------------------
 	// C10: Constellation
@@ -123,7 +149,7 @@ vocabulary <https://bentleyjoakes.github.io/DTDF/vocab/DTDFVocab#> as DTDFVocab 
 	
 	//------------------
 	// Multi-characteristic concepts
-		scalar property IsAutomatic [
+	scalar property IsAutomatic [
 		domain DataTransmitted, Action
 		range xsd:boolean
 		functional
