@@ -6,6 +6,7 @@ vocabulary <https://bentleyjoakes.github.io/DTDF/vocab/DTDFVocab#> as DTDFVocab 
 	extends<https://bentleyjoakes.github.io/DTDF/vocab/base#> as base
 	
 	concept DigitalTwin
+	concept DTComponent
 	
 	//------------------------------
 	// C1: SystemUnderStudy
@@ -55,7 +56,7 @@ vocabulary <https://bentleyjoakes.github.io/DTDF/vocab/DTDFVocab#> as DTDFVocab 
 	
 	//------------------------------
 	// C5: Data Transmitted
-	concept DataTransmitted
+	concept DataTransmitted < DTComponent
 	
 	// relations from sensor to data transmitted
 	// relations from data transmitted to data on DT side
@@ -68,8 +69,8 @@ vocabulary <https://bentleyjoakes.github.io/DTDF/vocab/DTDFVocab#> as DTDFVocab 
 	
 	//------------------------------
 	// C6: Insights/Actions
-	concept Insight
-	concept Action
+	concept Insight < DTComponent
+	concept Action < DTComponent
 	
 	relation entity Provides [
 		from Service
@@ -80,11 +81,11 @@ vocabulary <https://bentleyjoakes.github.io/DTDF/vocab/DTDFVocab#> as DTDFVocab 
 	
 	//------------------------------
 	// C7: Services
-	concept Service
+	concept Service < DTComponent
 	
 	//------------------------------
 	// C8: Enablers
-	concept Enabler
+	concept Enabler < DTComponent
 	
 	relation entity Enables [
 		from Enabler
@@ -101,8 +102,8 @@ vocabulary <https://bentleyjoakes.github.io/DTDF/vocab/DTDFVocab#> as DTDFVocab 
 	
 	//------------------------------
 	// C9: Models/Data
-	concept Model
-	concept Data
+	concept Model < DTComponent
+	concept Data < DTComponent
 	
 	relation entity InputTo [
 		from Model, Data
@@ -118,7 +119,7 @@ vocabulary <https://bentleyjoakes.github.io/DTDF/vocab/DTDFVocab#> as DTDFVocab 
 	// C11: TimeScale
 	concept TimeScale < base:DescribedThing
 	relation entity HasTimeScale [
-		from DataTransmitted, Insight, Action, Enabler
+		from DTComponent
 		to TimeScale
 		forward hasTimeScale
 	]
