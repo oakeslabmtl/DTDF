@@ -50,7 +50,7 @@ vocabulary <https://bentleyjoakes.github.io/DTDF/vocab/DTDFVocab#> as DTDFVocab 
 	concept SystemComponent < Component
 	concept ConnectionComponent < Component
 	
-	concept System < base:DescribedThing, base:ContainedElement, MultiplicityThing
+	concept System < base:DescribedThing, base:ContainedElement, MultiplicityThing, PurposeThing
 	concept Environment < base:DescribedThing, base:ContainedElement
 	concept Agent < base:DescribedThing
 	

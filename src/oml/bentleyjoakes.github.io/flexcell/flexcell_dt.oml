@@ -8,7 +8,7 @@ description <https://bentleyjoakes.github.io/flexcell/flexcell_dt#> as flexcell 
 
 	
 	instance FlexCellDT : DTDFVocab:DigitalTwin [
-		DTDFVocab:Purpose "enhance the functionality of the PT through the DT services"
+		DTDFVocab:purpose "enhance the functionality of the PT through the DT services"
 		DTDFVocab:multiplicity 1
 	]
 	

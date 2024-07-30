@@ -3,16 +3,17 @@ description <https://bentleyjoakes.github.io/incubator/incubator_pt#> as incubat
 	uses <https://bentleyjoakes.github.io/DTDF/vocab/DTDFVocab#> as DTDFVocab
 
 	uses <https://bentleyjoakes.github.io/DTDF/vocab/base#> as base
+	extends <https://bentleyjoakes.github.io/DTDF/desc/baseDesc#> as baseDesc
 
 	instance pt : DTDFVocab:SystemUnderStudy [
-		DTDFVocab:multiplicity 1
 		DTDFVocab:hasSystem incubator
 		DTDFVocab:hasAgent user
 		DTDFVocab:hasEnvironment room
 	]
 	
 	instance incubator : DTDFVocab:System[
-		DTDFVocab:Purpose "maintain a specific temperature within the incubator’s chamber"
+		DTDFVocab:purpose "maintain a specific temperature within the incubator’s chamber"
+		DTDFVocab:multiplicity 1
 		base:contains power_supply
 	]
 	
@@ -34,6 +35,18 @@ description <https://bentleyjoakes.github.io/incubator/incubator_pt#> as incubat
 	instance temp_sensor_1 : DTDFVocab:SensingComponent
 	instance temp_sensor_2 : DTDFVocab:SensingComponent
 	instance temp_sensor_3 : DTDFVocab:SensingComponent
+	
+	instance temp_readings_trans : DTDFVocab:DataTransmitted [
+		DTDFVocab:producedFrom temp_sensor_1, temp_sensor_2, temp_sensor_3
+		DTDFVocab:hasTimeScale baseDesc:rt
+		DTDFVocab:IsAutomatic true
+	]
+	
+	instance controller_state_trans : DTDFVocab:DataTransmitted [
+		DTDFVocab:hasTimeScale baseDesc:rt
+		DTDFVocab:IsAutomatic true
+	]
+	
 	
 	instance user : DTDFVocab:Agent [
 		base:desc "Can manually operate the lid"

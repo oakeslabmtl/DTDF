@@ -3,15 +3,20 @@ description <https://bentleyjoakes.github.io/incubator/incubator_dt#> as incubat
 	uses <https://bentleyjoakes.github.io/DTDF/vocab/DTDFVocab#> as DTDFVocab
 	
 	extends <https://bentleyjoakes.github.io/DTDF/desc/baseDesc#> as baseDesc
-
+	extends <https://bentleyjoakes.github.io/incubator/incubator_pt#> as pt
 	
 	instance IncubatorDT : DTDFVocab:DigitalTwin [
-		DTDFVocab:Purpose "enhance the functionality of the PT through the DT services"
-		
+		DTDFVocab:purpose "enhance the functionality of the PT through the DT services"
 		DTDFVocab:multiplicity 1
 	]
 	
 	// SERVICES
+	
+	instance heater_state_estimation_service : DTDFVocab:Service[
+		DTDFVocab:provides heater_state_estimation
+		DTDFVocab:atStage baseDesc:operation
+	]
+	
 	instance real_time_viz_service : DTDFVocab:Service[
 		DTDFVocab:provides real_time_viz
 		DTDFVocab:atStage baseDesc:operation
@@ -41,6 +46,7 @@ description <https://bentleyjoakes.github.io/incubator/incubator_dt#> as incubat
 		DTDFVocab:enables anomaly_detector
 	]
 	instance state_estimator : DTDFVocab:Enabler [
+		DTDFVocab:enables heater_state_estimation_service
 		DTDFVocab:enables anomaly_detector
 		DTDFVocab:enables safe_adaptation
 	]
@@ -100,14 +106,16 @@ description <https://bentleyjoakes.github.io/incubator/incubator_dt#> as incubat
 	 [
 		DTDFVocab:inputTo dashboard_enabler
 		DTDFVocab:inputTo optimization_algs
+		DTDFVocab:fromData pt:temp_readings_trans
 	]
 	instance temp_readings_historical : DTDFVocab:Data
 	 [
 		DTDFVocab:inputTo simulator
 	]
-	instance controller_state : DTDFVocab:Data
+	instance controller_state : DTDFVocab:Data [
+		DTDFVocab:fromData pt:controller_state_trans
+	]
 
-	
 	// COMMUNICATION
 	instance dashboard_viz : DTDFVocab:Insight [
 		DTDFVocab:hasTimeScale baseDesc:slower_trt
@@ -118,16 +126,12 @@ description <https://bentleyjoakes.github.io/incubator/incubator_dt#> as incubat
 		DTDFVocab:hasTimeScale baseDesc:rt
 	]
 	
-	instance temp_readings_trans : DTDFVocab:DataTransmitted [
-		DTDFVocab:IsAutomatic true
-		DTDFVocab:hasTimeScale baseDesc:rt
-		DTDFVocab:asData temp_readings_streaming
-	]
-	
-	
 	// INSIGHTS/ACTIONS
+	instance heater_state_estimation : DTDFVocab:Insight[
+		DTDFVocab:hasTimeScale baseDesc:rt
+	]
 	instance dashboard : DTDFVocab:Insight[
-		DTDFVocab:hasTimeScale baseDesc:slower_trt
+		DTDFVocab:hasTimeScale baseDesc:rt
 	]
 	instance anomaly_warning : DTDFVocab:Insight[
 		DTDFVocab:hasTimeScale baseDesc:slower_trt
