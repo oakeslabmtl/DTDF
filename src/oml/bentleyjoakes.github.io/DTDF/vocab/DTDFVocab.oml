@@ -1,16 +1,36 @@
 vocabulary <https://bentleyjoakes.github.io/DTDF/vocab/DTDFVocab#> as DTDFVocab {
 	
 	extends <http://www.w3.org/2001/XMLSchema#> as xsd
-	extends <http://www.w3.org/2000/01/rdf-schema#> as rdfs
 	
 	extends<https://bentleyjoakes.github.io/DTDF/vocab/base#> as base
 	
-	concept DigitalTwin
-	concept DTComponent
+	aspect Component < base:DescribedThing, base:ContainedElement
+	
+	aspect PurposeThing
+	scalar property purpose [
+		domain PurposeThing
+		range xsd:string
+	]
+	
+	aspect AutomaticEnabledThing
+	scalar property IsAutomatic [
+		domain AutomaticEnabledThing
+		range xsd:boolean
+		functional
+	]
+	
+	//------------------------------
+	// C0: Digital Twin
+	
+	concept DigitalTwin < base:ContainedElement, PurposeThing, MultiplicityThing, FidelityThing
+	
+	concept DTComponent < Component, FidelityThing [
+		restricts all base:isContainedIn to DigitalTwin
+	]
 	
 	//------------------------------
 	// C1: SystemUnderStudy
-	concept SystemUnderStudy
+	concept SystemUnderStudy < base:ContainedElement, PurposeThing
 	relation entity HasSystem [
 		from SystemUnderStudy
 		to System
@@ -25,38 +45,84 @@ vocabulary <https://bentleyjoakes.github.io/DTDF/vocab/DTDFVocab#> as DTDFVocab 
 		from SystemUnderStudy
 		to Agent
 		forward hasAgent
-	]  
-	
-	concept System < base:ContainedElement
-	scalar property Purpose [
-		domain System, DigitalTwin
-		range xsd:string 
 	]
 	
+	concept SystemComponent < Component
+	concept ConnectionComponent < Component
+	
+	concept System < base:DescribedThing, base:ContainedElement, MultiplicityThing
 	concept Environment < base:DescribedThing, base:ContainedElement
 	concept Agent < base:DescribedThing
-	concept Component < base:DescribedThing, base:ContainedElement
 	
 	//------------------------------
-	// C2: ActingComponents
+	// C2: Acting Components
 	
-	concept ActingComponent < Component
+	concept ActingComponent < ConnectionComponent, TimeScaleThing
 
 	//------------------------------
-	// C3: SensingComponents
-	concept SensingComponent < Component
+	// C3: Sensing Components
+	// TODO: Align with SOSA ontology - https://www.w3.org/TR/vocab-ssn/#SOSASensor
+	concept SensingComponent < ConnectionComponent, TimeScaleThing
 	
 	//------------------------------
-	// C4: Multiplicity
+	// C4: Physical to Virtual Interactions
+	concept DataTransmitted < ConnectionComponent, TimeScaleThing, AutomaticEnabledThing
+	relation entity ProducedData [
+		from SensingComponent
+		to DataTransmitted
+		forward producedData
+		reverse producedFrom
+	]
+	
+	//------------------------------
+	// C5: Virtual to Physical Interaction
+	
+	//------------------------------
+	// C6: Services
+	concept Service < DTComponent, TimeScaleThing
+	
+	//------------------------------
+	// C7: TimeScale
+	concept TimeScale < base:DescribedThing
+	aspect TimeScaleThing
+	relation entity HasTimeScale [
+		from TimeScaleThing
+		to TimeScale
+		forward hasTimeScale
+	]
+	
+	//------------------------------
+	// C8: Multiplicity
+	
+	aspect MultiplicityThing
 	scalar property multiplicity [
-		domain DigitalTwin, SystemUnderStudy
+		domain MultiplicityThing
 		range xsd:integer
 		functional
 	]
 	
 	//------------------------------
-	// C5: Data Transmitted
-	concept DataTransmitted < DTComponent
+	// C9: LifeCycleStage
+	concept LifeCycleStage < base:DescribedThing
+	relation entity AtStage [
+		from Service
+		to LifeCycleStage
+		forward atStage
+		reverse providedService
+	]
+	
+	//------------------------------
+	// C10: Models/Data
+	aspect Input
+	concept Model < DTComponent, Input
+	concept Data < DTComponent, Input
+	
+	relation entity InputTo [
+		from Input
+		to Enabler
+		forward inputTo
+		reverse hasInput
+	]
 	
 	// relations from sensor to data transmitted
 	// relations from data transmitted to data on DT side
@@ -68,23 +134,7 @@ vocabulary <https://bentleyjoakes.github.io/DTDF/vocab/DTDFVocab#> as DTDFVocab 
 	]
 	
 	//------------------------------
-	// C6: Insights/Actions
-	concept Insight < DTComponent
-	concept Action < DTComponent
-	
-	relation entity Provides [
-		from Service
-		to Insight, Action
-		forward provides
-		reverse providedBy
-	]
-	
-	//------------------------------
-	// C7: Services
-	concept Service < DTComponent
-	
-	//------------------------------
-	// C8: Enablers
+	// C11: Enablers
 	concept Enabler < DTComponent
 	
 	relation entity Enables [
@@ -101,45 +151,11 @@ vocabulary <https://bentleyjoakes.github.io/DTDF/vocab/DTDFVocab#> as DTDFVocab 
 	]
 	
 	//------------------------------
-	// C9: Models/Data
-	concept Model < DTComponent
-	concept Data < DTComponent
-	
-	relation entity InputTo [
-		from Model, Data
-		to Enabler
-		forward inputTo
-		reverse hasInput
-	]
+	// C12: Constellation
+	// NOTE: Connections between DTComponents are specialized
 	
 	//------------------------------
-	// C10: Constellation
-	
-	//------------------------------
-	// C11: TimeScale
-	concept TimeScale < base:DescribedThing
-	relation entity HasTimeScale [
-		from DTComponent
-		to TimeScale
-		forward hasTimeScale
-	]
-	
-	//------------------------------
-	// C12: FidelityConsideration
-	concept FidelityConsideration < base:DescribedThing
-	
-	//------------------------------
-	// C13: LifeCycleStage
-	concept LifeCycleStage < base:DescribedThing
-	relation entity AtStage [
-		from Service
-		to LifeCycleStage
-		forward atStage
-		reverse providedService
-	]
-	
-	//------------------------------
-	// C14: EvolutionStage
+	// C13: EvolutionStage
 	concept EvolutionStage < base:DescribedThing
 	relation entity nextEvoStage [
 		from EvolutionStage
@@ -147,12 +163,62 @@ vocabulary <https://bentleyjoakes.github.io/DTDF/vocab/DTDFVocab#> as DTDFVocab 
 		forward nextStage
 		irreflexive
 	]
-	
-	//------------------
-	// Multi-characteristic concepts
-	scalar property IsAutomatic [
-		domain DataTransmitted, Action
-		range xsd:boolean
-		functional
+	relation entity DTEvolution [
+		from DigitalTwin
+		to EvolutionStage
+		forward evolution
 	]
+	
+	//------------------------------
+	// C14: FidelityConsideration
+	concept FidelityConsideration < base:DescribedThing
+	aspect FidelityThing
+	relation entity DTFidelity [
+		from FidelityThing
+		to FidelityConsideration
+		forward fidelityConsideration
+	]
+	
+	//------------------------------
+	// C15: TechnicalConnection
+	concept TechnicalConnection < base:DescribedThing
+	relation entity TechDetails [
+		from DTComponent
+		to TechnicalConnection
+		forward techDetails
+	]
+	
+	//------------------------------
+	// C16: Hosting/Deployment
+	concept Deployment < base:DescribedThing
+	relation entity DeploymentDetails [
+		from DTComponent
+		to Deployment
+		forward deploymentDetails
+	]
+	
+	//------------------------------
+	// C17: Insights/DecisionMaking
+	
+	aspect ProvidedThing < TimeScaleThing
+	concept Insight < ConnectionComponent, ProvidedThing
+	concept Action < ConnectionComponent, ProvidedThing, AutomaticEnabledThing
+	
+	relation entity Provides [
+		from Service
+		to ProvidedThing
+		forward provides
+		reverse providedBy
+	]
+	
+	//------------------------------
+	// C18: Horizontal Integration
+	concept HoriIntegration < base:DescribedThing
+	relation entity HoriIntegrationRelation [ 
+		from DigitalTwin
+		to HoriIntegration
+		forward hIntegration
+	]
+	
+	
 }
