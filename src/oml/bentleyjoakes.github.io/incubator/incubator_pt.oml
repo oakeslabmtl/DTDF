@@ -14,7 +14,7 @@ description <https://bentleyjoakes.github.io/incubator/incubator_pt#> as incubat
 	instance incubator : DTDFVocab:System[
 		DTDFVocab:purpose "maintain a specific temperature within the incubator’s chamber"
 		DTDFVocab:multiplicity 1
-		base:contains power_supply
+		base:contains controller, power_supply, fan, heater
 	]
 	
 	instance controller : DTDFVocab:ActingComponent[
