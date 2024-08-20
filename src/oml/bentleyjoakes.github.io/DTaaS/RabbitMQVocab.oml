@@ -1,0 +1,61 @@
+vocabulary <https://bentleyjoakes.github.io/DTaaS/RabbitMQVocab#> as RabbitMQVocab {
+	
+	extends <http://www.w3.org/2001/XMLSchema#> as xsd
+
+	extends <https://bentleyjoakes.github.io/DTDF/vocab/DTDFVocab#> as DTDFVocab
+	
+	concept ExchangeName
+	scalar property exchange_name_str [
+		domain ExchangeName
+		range xsd:string
+		functional
+	]
+	
+	concept RoutingKey
+	scalar property routing_key_str [
+		domain RoutingKey
+		range xsd:string
+		functional
+	]
+	
+	relation entity RouteExchange [
+		from RoutingKey
+		to ExchangeName
+		forward exchange
+	]
+	
+	concept Source
+	scalar property source_str [
+		domain Source
+		range xsd:string
+		functional
+	]
+	relation entity SourceRoute [
+		from Source
+		to RoutingKey
+		forward routeKey
+	]
+	
+	concept MessageListener
+	scalar property MLSource[
+		domain MessageListener
+		range xsd:string
+		functional
+	]
+	scalar property MLTarget[
+		domain MessageListener
+		range xsd:string
+		functional
+	]
+	relation entity MLtoSourceRoute [
+		from MessageListener
+		to Source
+		forward route
+	]
+	relation entity MLSourceComponent[
+		from MessageListener
+		to DTDFVocab:Component
+		forward sourceComponent
+	]
+	
+}

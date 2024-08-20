@@ -2,6 +2,8 @@ description bundle <https://bentleyjoakes.github.io/bundles/descBundle#> as desc
 	
 	includes <https://bentleyjoakes.github.io/incubator/incubator_dt#>
 	includes <https://bentleyjoakes.github.io/incubator/incubator_pt#>
+	includes <https://bentleyjoakes.github.io/incubator/incubator_deploy#>
+	
 //	includes <https://bentleyjoakes.github.io/incubator/incubatorKalmanFilter#>
 //	includes <https://bentleyjoakes.github.io/domains/state_estimation/stateEstimationDescBase#>
 	
