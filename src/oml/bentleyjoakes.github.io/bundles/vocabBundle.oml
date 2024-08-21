@@ -2,5 +2,6 @@ vocabulary bundle <https://bentleyjoakes.github.io/bundles/vocabBundle#> as ^vbu
 	
 	includes <https://bentleyjoakes.github.io/DTDF/vocab/DTDFVocab#>
 	includes <https://bentleyjoakes.github.io/DTaaS/RabbitMQVocab#>
+	includes <https://bentleyjoakes.github.io/DTaaS/Location#>
 	includes <https://bentleyjoakes.github.io/domains/state_estimation/stateEstimationVocab#>
 }

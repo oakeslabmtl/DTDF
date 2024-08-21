@@ -1,0 +1,11 @@
+vocabulary <https://bentleyjoakes.github.io/DTaaS/Location#> as Location {
+	
+	extends <http://www.w3.org/2001/XMLSchema#> as xsd
+	extends <https://bentleyjoakes.github.io/DTDF/vocab/DTDFVocab#> as DTDFVocab
+	
+	scalar property file_loc_str [
+		domain DTDFVocab:DTComponent
+		range xsd:string
+		functional
+	]
+}
