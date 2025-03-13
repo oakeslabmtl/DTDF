@@ -7,10 +7,10 @@ on:
       - "v*"
   workflow_dispatch:
 jobs:
-  export_game:
+  take_screenshot_dtinsight:
     runs-on: ubuntu-latest
     permissions: write-all
-    name: Export Game
+    name: Take a Screenshot Using DTInsight
     steps:
       - name: Checkout DTInsight repository
         uses: actions/checkout@v4
@@ -60,6 +60,7 @@ jobs:
           sleep 5
       - name: Take a screenshot
         run: |
+          cd DTOnto
           mkdir -p ci_screenshots
           COMMIT_HASH=$(git rev-parse --short HEAD)
           DATE=$(date +'%Y-%m-%d')
@@ -68,6 +69,7 @@ jobs:
           echo "SCREENSHOT_NAME=$SCREENSHOT_NAME" >> $GITHUB_ENV
       - name: Commit screenshot
         run: |
+          cd DTOnto
           git config --global user.name "github-actions"
           git config --global user.email "github-actions@github.com"
           git add "$SCREENSHOT_NAME"
