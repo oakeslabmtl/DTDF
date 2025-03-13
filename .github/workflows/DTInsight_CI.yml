@@ -17,6 +17,7 @@ jobs:
         with:
           ssh-key: ${{ secrets.CI_DTINSIGHT }}
           repository: oakeslab-polymtl/DTInsight
+          ref: develop
       - name: Checkout DTOnto repository
         uses: actions/checkout@v4
         with:
@@ -30,7 +31,7 @@ jobs:
           # Start Fuseki server
           ./gradlew startFuseki &
           # Give Fuseki time to start
-          sleep 20
+          sleep 30
           # Verify Fuseki is running
           curl -v http://localhost:3030
           # Load data into Fuseki
