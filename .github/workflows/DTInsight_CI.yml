@@ -10,7 +10,7 @@ jobs:
   take_screenshot_dtinsight:
     runs-on: ubuntu-latest
     permissions: write-all
-    name: Export Game
+    name: Take a Screenshot Using DTInsight
     steps:
       - name: Checkout DTInsight repository
         uses: actions/checkout@v4
