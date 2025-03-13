@@ -12,17 +12,15 @@ jobs:
     permissions: write-all
     name: Export Game
     steps:
-      - name: Setup SSH access to DTInsight
-        run: |
-          eval `ssh-agent -s`
-          ssh-add - <<< '${{ secrets.CI_DTINSIGHT }}'
       - name: Checkout DTInsight repository
         uses: actions/checkout@v4
         with:
+          ssh-key: ${{ secrets.CI_DTINSIGHT }}
           repository: oakeslab-polymtl/DTInsight
-          path: DTOnto
       - name: Checkout DTOnto repository
         uses: actions/checkout@v4
+        with:
+          path: DTOnto
       - name: Set up Gradle
         uses: gradle/gradle-build-action@v2
       - name: Run Fuseki server with DTOnto data
