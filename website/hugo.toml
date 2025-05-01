@@ -3,7 +3,7 @@ title = "Digital Twin Reporting Summary"
 author = "Kérian Fiter"
 canonifyurls = true
 languagecode = "en"
-theme = "black-and-light"
+theme = "my-theme"
 
 pygmentsstyle       = "bw"
 pygmentscodefences  = true
