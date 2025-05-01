@@ -72,11 +72,16 @@ jobs:
           # Copy the local screenshot file to the destination with the new name
           cp ~/.local/share/godot/app_userdata/DTInsight/latest_screenshot.png "$SCREENSHOT_NAME"
           echo "SCREENSHOT_NAME=$SCREENSHOT_NAME" >> $GITHUB_ENV
+          
+          # Also copy to website static folder
+          mkdir -p DTOnto/website/static/images
+          cp ~/.local/share/godot/app_userdata/DTInsight/latest_screenshot.png "DTOnto/website/static/images/architecture.png"
       - name: Commit screenshot
         run: |
           cd DTOnto
           git config --global user.name "github-actions"
           git config --global user.email "github-actions@github.com"
           git add "$SCREENSHOT_NAME"
+          git add "website/static/images/architecture.png"
           git commit -m "Add CI screenshot for commit ${GITHUB_SHA}"
           git push
