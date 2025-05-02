@@ -31,7 +31,12 @@ jobs:
           # Start Fuseki server
           ./gradlew startFuseki &
           # Give Fuseki time to start
-          sleep 30
+          echo "Waiting for service to start..."
+          for i in {1..30}; do
+            curl -s http://localhost:3030 && break
+            echo "Service not ready. Retrying in 2 seconds..."
+            sleep 2
+          done
           # Verify Fuseki is running
           curl -v http://localhost:3030
           # Load data into Fuseki
