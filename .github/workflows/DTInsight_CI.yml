@@ -109,7 +109,7 @@ jobs:
           
       # Save website directory as artifact for next job
       - name: Archive website directory
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: website-files
           path: DTOnto/website/
@@ -125,7 +125,7 @@ jobs:
       
       # Download the website directory with the updated screenshot
       - name: Download website directory
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: website-files
           path: ./website
