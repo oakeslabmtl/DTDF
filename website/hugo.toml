@@ -1,4 +1,4 @@
-baseurl = "https://www.example.com/"
+baseurl = "https://dt-onto.vercel.app/"
 title = "Digital Twin Reporting Summary"
 author = "Kérian Fiter"
 canonifyurls = true
