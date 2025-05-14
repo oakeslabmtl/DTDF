@@ -1,4 +1,4 @@
-baseurl = "https://dt-onto.vercel.app/"
+baseurl = "https://oakeslab-polymtl.github.io/DTOnto/"
 title = "Digital Twin Reporting Summary"
 author = "Kérian Fiter"
 canonifyurls = true

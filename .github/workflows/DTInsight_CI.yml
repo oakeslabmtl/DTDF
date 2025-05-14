@@ -119,6 +119,13 @@ jobs:
     needs: take_screenshot_dtinsight
     runs-on: ubuntu-latest
     name: Build and Deploy Hugo Website
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - name: Checkout DTOnto repository
         uses: actions/checkout@v4
@@ -141,11 +148,17 @@ jobs:
         run: |
           hugo --minify --gc
       
-      - name: Deploy to Vercel
-        uses: amondnet/vercel-action@v25
+      # Configure GitHub Pages
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+
+      # Upload the Hugo build output to GitHub Pages
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
         with:
-          vercel-args: '--prod'
-          vercel-token: ${{ secrets.VERCEL_TOKEN }}
-          vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
-          vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
-          working-directory: ./website/public
+          path: './website/public'
+          
+      # Deploy to GitHub Pages
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
