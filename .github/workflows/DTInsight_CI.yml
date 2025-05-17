@@ -62,10 +62,20 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y xvfb
       
-      - name: Unzip and set permissions
+      - name: Unzip for Linux and set permissions
         run: |
           unzip /home/runner/.local/share/godot/archives/Linux.zip -d /home/runner/.local/share/godot/archives/
           chmod +x /home/runner/.local/share/godot/archives/DTInsight.x86_64
+
+      - name: Unzip HTML5 export
+        run: |
+          mkdir -p web_export
+          unzip /home/runner/.local/share/godot/archives/Web.zip -d web_export/
+      
+      - name: Copy web export to website static folder
+        run: |
+          mkdir -p DTOnto/website/static/DTInsight_web_export
+          cp -r web_export/* DTOnto/website/static/DTInsight_web_export
       
       - name: Run Godot and trigger screenshot
         run: |
@@ -104,7 +114,8 @@ jobs:
           git config --global user.email "github-actions@github.com"
           git add "$SCREENSHOT_NAME"
           git add "website/static/images/architecture.png"
-          git commit -m "Add CI screenshot for commit ${GITHUB_SHA}"
+          git add "website/static/DTInsight_web_export"
+          git commit -m "Add CI screenshot and DTInsight web export for commit ${GITHUB_SHA}"
           git push
           
       # Save website directory as artifact for next job
