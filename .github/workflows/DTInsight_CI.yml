@@ -20,16 +20,16 @@ jobs:
           ref: develop
           path: DTInsight
       
-      - name: Checkout DTOnto repository
+      - name: Checkout DTDF repository
         uses: actions/checkout@v4
         with:
-          path: DTOnto
+          path: DTDF
       
       - name: Set up Gradle
         uses: gradle/gradle-build-action@v2
       
-      - name: Run Fuseki server with DTOnto data
-        working-directory: ./DTOnto
+      - name: Run Fuseki server with DTDF data
+        working-directory: ./DTDF
         run: |
           chmod +x gradlew
           # Start Fuseki server
@@ -74,8 +74,8 @@ jobs:
       
       - name: Copy web export to website static folder
         run: |
-          mkdir -p DTOnto/website/static/DTInsight_web_export
-          cp -r web_export/* DTOnto/website/static/DTInsight_web_export
+          mkdir -p DTDF/website/static/DTInsight_web_export
+          cp -r web_export/* DTDF/website/static/DTInsight_web_export
       
       - name: Run Godot
         run: |
@@ -83,7 +83,7 @@ jobs:
           sleep 5
       
       - name: Trigger CI/CD command (screenshot and data dump) and process those
-        working-directory: ./DTOnto
+        working-directory: ./DTDF
         run: |
           # Create screenshots directory
           mkdir -p ci_screenshots
@@ -111,7 +111,7 @@ jobs:
           cp -f ~/.local/share/godot/app_userdata/DTInsight/data_dump.yaml "website/static/data_dump.yaml"
       
       - name: Commit screenshot
-        working-directory: ./DTOnto
+        working-directory: ./DTDF
         run: |
           git config --global user.name "github-actions"
           git config --global user.email "github-actions@github.com"
@@ -127,7 +127,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: website-files
-          path: DTOnto/website/
+          path: DTDF/website/
           retention-days: 1
 
   build_and_deploy_hugo:
@@ -142,7 +142,7 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
-      - name: Checkout DTOnto repository
+      - name: Checkout DTDF repository
         uses: actions/checkout@v4
       
       # Download the website directory with the updated screenshot
