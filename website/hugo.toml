@@ -1,4 +1,4 @@
-baseurl = "https://oakeslab-polymtl.github.io/DTOnto/"
+baseurl = "https://oakeslab-polymtl.github.io/DTDF/"
 title = "Digital Twin Reporting Summary"
 author = "Kérian Fiter"
 canonifyurls = true
