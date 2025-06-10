@@ -109,6 +109,9 @@ jobs:
 
           # Copy data dump to website static folder
           cp -f ~/.local/share/godot/app_userdata/DTInsight/data_dump.yaml "website/static/data_dump.yaml"
+
+          # Copy characteristics table to website partials folder
+          cp -f ~/.local/share/godot/app_userdata/DTInsight/characteristics-table.html "website/themes/my-theme/layouts/partials/characteristics-table.html"
       
       - name: Commit screenshot
         working-directory: ./DTDF
@@ -118,8 +121,9 @@ jobs:
           git add "$SCREENSHOT_NAME"
           git add "website/static/images/architecture.png"
           git add "website/static/data_dump.yaml"
+          git add "website/themes/my-theme/layouts/partials/characteristics-table.html"
           git add "website/static/DTInsight_web_export"
-          git commit -m "Add CI screenshot and DTInsight web export for commit ${GITHUB_SHA}"
+          git commit -m "Added CI screenshot, characteristics table, and DTInsight web export for commit ${GITHUB_SHA}"
           git push
           
       # Save website directory as artifact for next job
