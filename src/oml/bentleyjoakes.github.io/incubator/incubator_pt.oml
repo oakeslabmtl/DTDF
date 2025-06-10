@@ -10,25 +10,26 @@ description <https://bentleyjoakes.github.io/incubator/incubator_pt#> as incubat
 		DTDFVocab:hasSystem incubator
 		DTDFVocab:hasAgent user
 		DTDFVocab:hasEnvironment room
+		base:desc "A Styrofoam box containing a lid, a heating element, and fan, controlled by a Raspberry Pi, for incubating tempeh."
 	]
 	
 	instance incubator : DTDFVocab:System[
 		DTDFVocab:purpose "maintain a specific temperature within the incubator’s chamber"
 		DTDFVocab:multiplicity 1
-		base:contains controller, power_supply, fan, heater
+		base:contains controller, power_supply, fan, heater, temp_sensor_1, temp_sensor_2, temp_sensor_3
 	]
 	
+	// C2: Acting Components
 	instance controller : DTDFVocab:ActingComponent[
 		base:desc "Controls the fan and heater"
 	]
-	
-	instance power_supply : DTDFVocab:Component[
+	instance power_supply : DTDFVocab:ActingComponent[
 		base:desc "Powers electrical components"
 	]
-	instance fan : DTDFVocab:Component[
+	instance fan : DTDFVocab:ActingComponent[
 		base:desc "Circulates air throughout box"
 	]
-	instance heater : DTDFVocab:Component[
+	instance heater : DTDFVocab:ActingComponent[
 		base:desc "Raises the temperature of surrounding air"
 	]
 	

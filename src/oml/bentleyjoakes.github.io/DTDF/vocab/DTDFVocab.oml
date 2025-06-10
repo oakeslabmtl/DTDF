@@ -93,6 +93,7 @@ vocabulary <https://bentleyjoakes.github.io/DTDF/vocab/DTDFVocab#> as DTDFVocab 
 	
 	//------------------------------
 	// C8: Multiplicity
+	concept Multiplicity < base:DescribedThing
 	aspect MultiplicityThing
 	scalar property multiplicity [
 		domain MultiplicityThing
