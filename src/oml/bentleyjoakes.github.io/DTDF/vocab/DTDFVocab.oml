@@ -56,7 +56,6 @@ vocabulary <https://bentleyjoakes.github.io/DTDF/vocab/DTDFVocab#> as DTDFVocab 
 	
 	//------------------------------
 	// C2: Acting Components
-	
 	concept ActingComponent < ConnectionComponent, TimeScaleThing
 
 	//------------------------------
@@ -76,6 +75,7 @@ vocabulary <https://bentleyjoakes.github.io/DTDF/vocab/DTDFVocab#> as DTDFVocab 
 	
 	//------------------------------
 	// C5: Virtual to Physical Interaction
+	concept VirtualToPhysical < DTComponent, TimeScaleThing
 	
 	//------------------------------
 	// C6: Services
@@ -93,7 +93,7 @@ vocabulary <https://bentleyjoakes.github.io/DTDF/vocab/DTDFVocab#> as DTDFVocab 
 	
 	//------------------------------
 	// C8: Multiplicity
-	
+	concept Multiplicity < base:DescribedThing
 	aspect MultiplicityThing
 	scalar property multiplicity [
 		domain MultiplicityThing
@@ -153,6 +153,7 @@ vocabulary <https://bentleyjoakes.github.io/DTDF/vocab/DTDFVocab#> as DTDFVocab 
 	//------------------------------
 	// C12: Constellation
 	// NOTE: Connections between DTComponents are specialized
+	concept Constellation < base:DescribedThing
 	
 	//------------------------------
 	// C13: EvolutionStage
@@ -220,5 +221,16 @@ vocabulary <https://bentleyjoakes.github.io/DTDF/vocab/DTDFVocab#> as DTDFVocab 
 		forward hIntegration
 	]
 	
+	//------------------------------
+	// C19: Data ownership and privacy	
+	concept DataOwnershipPrivacy < base:DescribedThing
+	
+	//------------------------------
+	// C20: Standardization
+	concept Standardization < base:DescribedThing
+	
+	//------------------------------
+	// C21: Security and safety considerations	
+	concept SecuritySafety < base:DescribedThing
 	
 }
