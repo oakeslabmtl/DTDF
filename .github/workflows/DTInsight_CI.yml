@@ -97,7 +97,7 @@ jobs:
           curl -v http://localhost:9090
           
           # Wait for the screenshot to be taken and saved
-          sleep 3
+          sleep 10
           
           # Copy the local screenshot file to the destination with the new name
           cp ~/.local/share/godot/app_userdata/DTInsight/latest_screenshot.png "$SCREENSHOT_NAME"
