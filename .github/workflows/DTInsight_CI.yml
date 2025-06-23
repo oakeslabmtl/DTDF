@@ -60,23 +60,23 @@ jobs:
 
       - name: Download Linux.zip
         run: |
-          curl -L -o ${{ runner.temp }}/godot_archives/Linux.zip \
+          curl -L -o /home/runner/.local/share/Linux.zip \
             https://github.com/oakeslab-polymtl/DTInsight/releases/download/stable/Linux.zip
 
       - name: Download Web.zip
         run: |
-          curl -L -o ${{ runner.temp }}/godot_archives/Web.zip \
+          curl -L -o /home/runner/.local/share/Web.zip \
             https://github.com/oakeslab-polymtl/DTInsight/releases/download/stable/Web.zip
       
       - name: Unzip for Linux and set permissions
         run: |
-          unzip ${{ runner.temp }}/godot_archives/Linux.zip -d /home/runner/.local/share/godot/archives/
+          unzip /home/runner/.local/share/Linux.zip -d /home/runner/.local/share/godot/archives/
           chmod +x /home/runner/.local/share/godot/archives/DTInsight.x86_64
 
       - name: Unzip HTML5 export
         run: |
           mkdir -p web_export
-          unzip ${{ runner.temp }}/godot_archives/Web.zip -d web_export/
+          unzip /home/runner/.local/share/Web.zip -d web_export/
       
       - name: Copy web export to website static folder
         run: |
