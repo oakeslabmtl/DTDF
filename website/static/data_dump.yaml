@@ -91,8 +91,8 @@ Models :
 	four_para_model
 		type : DTComponent/FidelityThing/Input/DescribedThing/Component/ContainedElement/Model/Thing/NamedIndividual/ConceptInstance
 		inputTo : state_estimator/anomaly_detector_enabler/optimization_algs/dashboard_enabler
-		sameAs : four_para_model
 		file_loc_str : models/plant_models/four_parameters_model/four_parameter_model.py
+		sameAs : four_para_model
 	two_para_model
 		type : DTComponent/FidelityThing/Input/DescribedThing/Component/ContainedElement/Model/Thing/NamedIndividual/ConceptInstance
 		inputTo : state_estimator/anomaly_detector_enabler/optimization_algs/dashboard_enabler
@@ -118,37 +118,37 @@ ProvidedThings :
 		type : TimeScaleThing/ProvidedThing/ConnectionComponent/DescribedThing/Component/ContainedElement/Insight/Thing/NamedIndividual/ConceptInstance
 		hasTimeScale : rt
 		providedBy : real_time_viz_service
-		sameAs : real_time_viz
 		desc : 3D visualization of the current state
+		sameAs : real_time_viz
 	anomaly_warning
 		type : TimeScaleThing/ProvidedThing/ConnectionComponent/DescribedThing/Component/ContainedElement/Insight/Thing/NamedIndividual/ConceptInstance
 		hasTimeScale : slower_trt
 		providedBy : anomaly_detector
-		sameAs : anomaly_warning
 		desc : anomaly detection
+		sameAs : anomaly_warning
 	dashboard
 		type : TimeScaleThing/ProvidedThing/ConnectionComponent/DescribedThing/Component/ContainedElement/Insight/Thing/NamedIndividual/ConceptInstance
 		hasTimeScale : rt
-		sameAs : dashboard
 		desc : dashboard visualization of the current state and historical data
+		sameAs : dashboard
 	heater_state_estimation
 		type : TimeScaleThing/ProvidedThing/ConnectionComponent/DescribedThing/Component/ContainedElement/Insight/Thing/NamedIndividual/ConceptInstance
 		hasTimeScale : rt
 		providedBy : heater_state_estimation_service
-		sameAs : heater_state_estimation
 		desc : state estimation of the heater
+		sameAs : heater_state_estimation
 	what_if_sim_results
 		type : TimeScaleThing/ProvidedThing/ConnectionComponent/DescribedThing/Component/ContainedElement/Insight/Thing/NamedIndividual/ConceptInstance
 		hasTimeScale : faster_trt
 		providedBy : what_if_sim
-		sameAs : what_if_sim_results
 		desc :  what-if analysis for future behavior under different controller configurations
+		sameAs : what_if_sim_results
 	controller_control
 		type : TimeScaleThing/ProvidedThing/AutomaticEnabledThing/ConnectionComponent/Action/DescribedThing/Component/ContainedElement/Thing/NamedIndividual/ConceptInstance
 		hasTimeScale : rt
 		providedBy : safe_adaptation/policy_optimization
-		sameAs : controller_control
 		desc : control policy updates to the PT
+		sameAs : controller_control
 	commands
 		type : TimeScaleThing/ProvidedThing/AutomaticEnabledThing/ConnectionComponent/Action/DescribedThing/Component/ContainedElement/Thing/NamedIndividual/ConceptInstance
 		hasTimeScale : rt
@@ -188,8 +188,8 @@ System :
 	fan
 		type : TimeScaleThing/ActingComponent/ConnectionComponent/DescribedThing/Component/ContainedElement/Thing/NamedIndividual/ConceptInstance
 		isContainedIn : incubator
-		sameAs : fan
 		desc : Circulates air throughout box
+		sameAs : fan
 	temp_sensor_2
 		type : TimeScaleThing/SensingComponent/ConnectionComponent/DescribedThing/Component/ContainedElement/Thing/NamedIndividual/ConceptInstance
 		producedData : temp_readings_trans
@@ -203,18 +203,18 @@ System :
 	heater
 		type : TimeScaleThing/ActingComponent/ConnectionComponent/DescribedThing/Component/ContainedElement/Thing/NamedIndividual/ConceptInstance
 		isContainedIn : incubator
-		sameAs : heater
 		desc : Raises the temperature of surrounding air
+		sameAs : heater
 	controller
 		type : TimeScaleThing/ActingComponent/ConnectionComponent/DescribedThing/Component/ContainedElement/Thing/NamedIndividual/ConceptInstance
 		isContainedIn : incubator
-		sameAs : controller
 		desc : Controls the fan and heater
+		sameAs : controller
 	power_supply
 		type : TimeScaleThing/ActingComponent/ConnectionComponent/DescribedThing/Component/ContainedElement/Thing/NamedIndividual/ConceptInstance
 		isContainedIn : incubator
-		sameAs : power_supply
 		desc : Powers electrical components
+		sameAs : power_supply
 	temp_sensor_3
 		type : TimeScaleThing/SensingComponent/ConnectionComponent/DescribedThing/Component/ContainedElement/Thing/NamedIndividual/ConceptInstance
 		producedData : temp_readings_trans
@@ -224,13 +224,13 @@ System environnement :
 	surrounding_air
 		type : DescribedThing/Component/ContainedElement/Thing/NamedIndividual/ConceptInstance
 		isContainedIn : room
-		sameAs : surrounding_air
 		desc : Heat sink
+		sameAs : surrounding_air
 	surface
 		type : DescribedThing/Component/ContainedElement/Thing/NamedIndividual/ConceptInstance
 		isContainedIn : room
-		sameAs : surface
 		desc : Where the incubator is placed
+		sameAs : surface
 Data :
 	temp_readings_streaming
 		type : Data/DTComponent/FidelityThing/Input/DescribedThing/Component/ContainedElement/Thing/NamedIndividual/ConceptInstance
@@ -248,39 +248,39 @@ Data :
 Rabbit exchange :
 	incubator_exchange
 		type : Thing/ExchangeName/NamedIndividual/ConceptInstance
-		sameAs : incubator_exchange
 		exchange_name_str : Incubator_AMQP
+		sameAs : incubator_exchange
 Rabbit route :
 	incubator_routing_key
-		type : Thing/RoutingKey/NamedIndividual/ConceptInstance
-		sameAs : incubator_routing_key
+		type : RoutingKey/Thing/NamedIndividual/ConceptInstance
 		routing_key_str : incubator.record.driver.state
 		exchange : incubator_exchange
+		sameAs : incubator_routing_key
 Rabbit source :
 	incubator_source
-		type : Thing/Source/NamedIndividual/ConceptInstance
-		sameAs : incubator_source
+		type : Source/Thing/NamedIndividual/ConceptInstance
 		routeKey : incubator_routing_key
 		source_str : low_level_driver
+		sameAs : incubator_source
 Rabbit message listener :
 	sensor1ML
-		type : Thing/MessageListener/NamedIndividual/ConceptInstance
-		sameAs : sensor1ML
-		sourceComponent : temp_sensor_1
+		type : MessageListener/Thing/NamedIndividual/ConceptInstance
+		route : incubator_source
 		MLSource : t2
 		MLTarget : temp_sensor_1
-		route : incubator_source
+		sourceComponent : temp_sensor_1
+		sameAs : sensor1ML
 	sensor2ML
-		type : Thing/MessageListener/NamedIndividual/ConceptInstance
-		sameAs : sensor2ML
-		sourceComponent : temp_sensor_2
+		type : MessageListener/Thing/NamedIndividual/ConceptInstance
+		route : incubator_source
 		MLSource : t2
 		MLTarget : temp_sensor_2
-		route : incubator_source
+		sourceComponent : temp_sensor_2
+		sameAs : sensor2ML
 	sensor3ML
-		type : Thing/MessageListener/NamedIndividual/ConceptInstance
-		sameAs : sensor3ML
-		sourceComponent : temp_sensor_3
+		type : MessageListener/Thing/NamedIndividual/ConceptInstance
+		route : incubator_source
 		MLSource : t3
 		MLTarget : temp_sensor_3
-		route : incubator_source
+		sourceComponent : temp_sensor_3
+		sameAs : sensor3ML
