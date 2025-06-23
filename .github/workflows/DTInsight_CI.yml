@@ -65,7 +65,7 @@ jobs:
 
       - name: Download Linux.zip
         run: |
-          curl -L -o /home/runner/.local/share/Linux.zip \
+          curl -L -o /home/runner/.local/share/Linux/Linux.zip \
             https://github.com/oakeslab-polymtl/DTInsight/releases/download/stable/Linux.zip
 
       - name: Download Web.zip
