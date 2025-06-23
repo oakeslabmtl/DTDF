@@ -47,30 +47,30 @@ jobs:
           ./gradlew owlLoad
           sleep 10
       
-      - name: Export game
-        id: export
-        uses: firebelley/godot-export@master
-        with:
-          godot_executable_download_url: https://github.com/godotengine/godot-builds/releases/download/4.4.1-stable/Godot_v4.4.1-stable_linux.x86_64.zip
-          godot_export_templates_download_url: https://github.com/godotengine/godot-builds/releases/download/4.4.1-stable/Godot_v4.4.1-stable_export_templates.tpz
-          relative_project_path: ./DTInsight
-          cache: false
-          archive_output: true
-      
       - name: Install dependencies
         run: |
           sudo apt-get update
           sudo apt-get install -y xvfb
+
+      - name: Download Linux.zip
+        run: |
+          curl -L -o ${{ runner.temp }}/godot_archives/Linux.zip \
+            https://github.com/oakeslab-polymtl/DTInsight/releases/download/stable/Linux.zip
+
+      - name: Download Web.zip
+        run: |
+          curl -L -o ${{ runner.temp }}/godot_archives/Web.zip \
+            https://github.com/oakeslab-polymtl/DTInsight/releases/download/stable/Web.zip
       
       - name: Unzip for Linux and set permissions
         run: |
-          unzip /home/runner/.local/share/godot/archives/Linux.zip -d /home/runner/.local/share/godot/archives/
+          unzip ${{ runner.temp }}/godot_archives/Linux.zip -d /home/runner/.local/share/godot/archives/
           chmod +x /home/runner/.local/share/godot/archives/DTInsight.x86_64
 
       - name: Unzip HTML5 export
         run: |
           mkdir -p web_export
-          unzip /home/runner/.local/share/godot/archives/Web.zip -d web_export/
+          unzip ${{ runner.temp }}/godot_archives/Web.zip -d web_export/
       
       - name: Copy web export to website static folder
         run: |
