@@ -91,7 +91,7 @@ jobs:
       - name: Run Godot
         run: |
           xvfb-run --server-args="-screen 0 1024x768x24" /home/runner/.local/share/Linux/DTInsight.x86_64 -- --ci-mode &
-          sleep 5
+          sleep 10
       
       - name: Trigger CI/CD command (screenshot and data dump) and process those
         working-directory: ./DTDF
