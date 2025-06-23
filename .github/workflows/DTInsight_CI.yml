@@ -58,6 +58,9 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y xvfb
 
+      - name: Ensure directory for downloads exists
+        run: mkdir -p /home/runner/.local/share/
+
       - name: Download Linux.zip
         run: |
           curl -L -o /home/runner/.local/share/Linux.zip \
