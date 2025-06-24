@@ -4,7 +4,7 @@
 // Incrementing CACHE_VERSION will kick off the install event and force
 // previously cached resources to be updated from the network.
 /** @type {string} */
-const CACHE_VERSION = '1750791689|29044655319';
+const CACHE_VERSION = '1750793264|30619376173';
 /** @type {string} */
 const CACHE_PREFIX = 'DTInsight-sw-cache-';
 const CACHE_NAME = CACHE_PREFIX + CACHE_VERSION;
