@@ -110,9 +110,16 @@ body {
 			<div id="status-notice"></div>
 		</div>
 
-		<script src="DTInsight.js"></script>
 		<script>
-const GODOT_CONFIG = {"args":[],"canvasResizePolicy":2,"emscriptenPoolSize":8,"ensureCrossOriginIsolationHeaders":true,"executable":"DTInsight","experimentalVK":false,"fileSizes":{"DTInsight.pck":799976,"DTInsight.wasm":36008623},"focusCanvas":false,"gdextensionLibs":[],"godotPoolSize":4,"serviceWorker":"DTInsight.service.worker.js"};
+if (!window.SharedArrayBuffer) {
+	document.getElementById('status').style.display = 'none';
+	setTimeout(() => document.getElementById('status').style.display = '', 1500);
+}
+</script>
+<script src="coi-serviceworker.min.js"></script>
+<script src="DTInsight.js"></script>
+		<script>
+const GODOT_CONFIG = {"args":[],"canvasResizePolicy":2,"emscriptenPoolSize":8,"ensureCrossOriginIsolationHeaders":true,"executable":"DTInsight","experimentalVK":false,"fileSizes":{"DTInsight.pck":776560,"DTInsight.wasm":36008623},"focusCanvas":false,"gdextensionLibs":[],"godotPoolSize":4,"serviceWorker":"DTInsight.service.worker.js"};
 const GODOT_THREADS_ENABLED = false;
 const engine = new Engine(GODOT_CONFIG);
 
