@@ -8,7 +8,7 @@
     <meta name="referrer" content="no-referrer">
     <meta name="description" content="{{ .Description | default .Site.Params.Description }}">
 
-    <script src="{{ .Site.BaseURL }}coi-serviceworker.min.js"></script>
+    <script src="{{ .Site.BaseURL }}js/coi-serviceworker.min.js"></script>
 
     {{ if not .Site.Params.disableWebFonts }}
       <link href="https://fonts.googleapis.com/css?family=Open+Sans:400|Old+Standard+TT:400&display=swap" rel="stylesheet" media="print" type="text/css" onload="this.media='all'">
