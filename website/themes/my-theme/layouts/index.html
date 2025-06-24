@@ -28,6 +28,15 @@
 
 <br>
 
+<script>
+  async function fetchDataAndSend() {
+    const res = await fetch('/data_dump.yaml');
+    const text = await res.text();
+    // Send to Godot via postMessage
+    window.postMessage({toGodot: text}, '*');
+  }
+</script>
+
 <iframe src="{{ .Site.BaseURL }}DTInsight_web_export/DTInsight.html" width="100%" height="600" style="border:none;"></iframe>
 
 <section id="content">
