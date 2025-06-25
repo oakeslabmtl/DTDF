@@ -29,15 +29,38 @@
 <br>
 
 <script>
-  async function fetchDataAndSend() {
-    const res = await fetch('/data_dump.yaml');
-    const text = await res.text();
-    // Send to Godot via postMessage
-    window.postMessage({toGodot: text}, '*');
-  }
+    async function fetchDataAndSend() {
+        try {
+            const res = await fetch('/data_dump.yaml');
+            const text = await res.text();
+            console.log('Fetched YAML data:', text.substring(0, 100) + '...');
+            
+            // Get the iframe and send message to it
+            const iframe = document.getElementById('godot-iframe');
+            if (iframe && iframe.contentWindow) {
+                iframe.contentWindow.postMessage({toGodot: text}, '*');
+                console.log('Message sent to Godot iframe');
+            } else {
+                console.error('Iframe not found or not ready');
+            }
+        } catch (error) {
+            console.error('Error fetching or sending data:', error);
+        }
+    }
+    
+    // Wait for iframe to load before sending data
+    window.addEventListener('load', () => {
+        setTimeout(fetchDataAndSend, 1000); // Give iframe time to initialize
+    });
 </script>
 
-<iframe src="{{ .Site.BaseURL }}DTInsight_web_export/DTInsight.html" width="100%" height="600" style="border:none;"></iframe>
+<iframe 
+    id="godot-iframe"
+    src="{{ .Site.BaseURL }}DTInsight_web_export/DTInsight.html" 
+    width="100%" 
+    height="600" 
+    style="border:none;">
+</iframe>
 
 <section id="content">
   <ul class="posts_listing">
