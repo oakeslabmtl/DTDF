@@ -1,30 +1,6 @@
 {{ partial "header.html" . }}
 
-<h2>Constellation Architecture</h2>
-
-<br>
-
-<section id="architecture">
-  <div class="zoom-container">
-    <img src="{{ .Site.BaseURL }}images/architecture.png" alt="Architecture Diagram" class="zoomable-image">
-  </div>
-</section>
-
-<!-- Modal for clicking on the image -->
-<div id="image-modal" class="modal">
-  <span class="close">&times;</span>
-  <img class="modal-content" id="modal-image">
-</div>
-
-<h2>Characteristics</h2>
-
-<br>
-
-<section id="table-responsive">
-  {{ partial "characteristics-table.html" . }}
-</section>
-
-<h2>DT Live Embed</h2>
+<h2>DT Interactive Constellation</h2>
 
 <br>
 
@@ -43,7 +19,6 @@
         }
     }
     
-    // Start fetching immediately
     fetchData();
 </script>
 
@@ -51,9 +26,33 @@
     id="godot-iframe"
     src="{{ .Site.BaseURL }}DTInsight_web_export/DTInsight.html" 
     width="100%" 
-    height="600" 
+    height="500" 
     style="border:none;">
 </iframe>
+
+<h2>DT Characteristics Table</h2>
+
+<br>
+
+<section id="table-responsive">
+  {{ partial "characteristics-table.html" . }}
+</section>
+
+<h2>DT Constellation Screenshot</h2>
+
+<br>
+
+<section id="architecture">
+  <div class="zoom-container">
+    <img src="{{ .Site.BaseURL }}images/architecture.png" alt="Architecture Diagram" class="zoomable-image">
+  </div>
+</section>
+
+<!-- Modal for clicking on the image -->
+<div id="image-modal" class="modal">
+  <span class="close">&times;</span>
+  <img class="modal-content" id="modal-image">
+</div>
 
 <section id="content">
   <ul class="posts_listing">
