@@ -1,6 +1,44 @@
 {{ partial "header.html" . }}
 
-<h2>Constellation Architecture</h2>
+<h2>DT Interactive Constellation</h2>
+
+<br>
+
+<script>
+    // Global variable that Godot can access
+    window.dataReady = null;
+    
+    async function fetchData() {
+        try {
+            const res = await fetch('{{ .Site.BaseURL }}data_dump.yaml');
+            const text = await res.text();
+            console.log('✅ YAML data fetched and ready');
+            window.dataReady = text; // Make it globally accessible
+        } catch (error) {
+            console.error('❌ Error fetching data:', error);
+        }
+    }
+    
+    fetchData();
+</script>
+
+<iframe 
+    id="godot-iframe"
+    src="{{ .Site.BaseURL }}DTInsight_web_export/DTInsight.html" 
+    width="100%" 
+    height="500" 
+    style="border:none;">
+</iframe>
+
+<h2>DT Characteristics Table</h2>
+
+<br>
+
+<section id="table-responsive">
+  {{ partial "characteristics-table.html" . }}
+</section>
+
+<h2>DT Constellation Screenshot</h2>
 
 <br>
 
@@ -15,20 +53,6 @@
   <span class="close">&times;</span>
   <img class="modal-content" id="modal-image">
 </div>
-
-<h2>Characteristics</h2>
-
-<br>
-
-<section id="table-responsive">
-  {{ partial "characteristics-table.html" . }}
-</section>
-
-<h2>DT Live Embed</h2>
-
-<br>
-
-<iframe src="/DTInsight/DTInsight.html" width="100%" height="600" style="border:none;"></iframe>
 
 <section id="content">
   <ul class="posts_listing">
