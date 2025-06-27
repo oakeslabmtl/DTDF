@@ -29,29 +29,22 @@
 <br>
 
 <script>
-    async function fetchDataAndSend() {
+    // Global variable that Godot can access
+    window.dataReady = null;
+    
+    async function fetchData() {
         try {
-            const res = await fetch('/data_dump.yaml');
+            const res = await fetch('{{ .Site.BaseURL }}data_dump.yaml');
             const text = await res.text();
-            console.log('Fetched YAML data:', text.substring(0, 100) + '...');
-            
-            // Get the iframe and send message to it
-            const iframe = document.getElementById('godot-iframe');
-            if (iframe && iframe.contentWindow) {
-                iframe.contentWindow.postMessage({toGodot: text}, '*');
-                console.log('Message sent to Godot iframe');
-            } else {
-                console.error('Iframe not found or not ready');
-            }
+            console.log('✅ YAML data fetched and ready');
+            window.dataReady = text; // Make it globally accessible
         } catch (error) {
-            console.error('Error fetching or sending data:', error);
+            console.error('❌ Error fetching data:', error);
         }
     }
     
-    // Wait for iframe to load before sending data
-    window.addEventListener('load', () => {
-        setTimeout(fetchDataAndSend, 1000); // Give iframe time to initialize
-    });
+    // Start fetching immediately
+    fetchData();
 </script>
 
 <iframe 
