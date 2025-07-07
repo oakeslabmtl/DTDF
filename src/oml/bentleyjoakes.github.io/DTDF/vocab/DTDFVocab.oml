@@ -28,6 +28,12 @@ vocabulary <https://bentleyjoakes.github.io/DTDF/vocab/DTDFVocab#> as DTDFVocab 
 		restricts all base:isContainedIn to DigitalTwin
 	]
 	
+	scalar property HasVisualization [
+		domain DTComponent
+		range xsd:boolean
+		functional
+	]
+	
 	//------------------------------
 	// C1: SystemUnderStudy
 	concept SystemUnderStudy < base:ContainedElement, PurposeThing
@@ -211,6 +217,7 @@ vocabulary <https://bentleyjoakes.github.io/DTDF/vocab/DTDFVocab#> as DTDFVocab 
 		forward provides
 		reverse providedBy
 	]
+
 	
 	//------------------------------
 	// C18: Horizontal Integration
