@@ -21,6 +21,7 @@ description <https://bentleyjoakes.github.io/incubator/incubator_dt#> as incubat
 	instance real_time_viz_service : DTDFVocab:Service[
 		DTDFVocab:provides real_time_viz
 		DTDFVocab:atStage baseDesc:operation
+		DTDFVocab:HasVisualization true
 	]
 	instance anomaly_detector : DTDFVocab:Service [
 		DTDFVocab:provides anomaly_warning
