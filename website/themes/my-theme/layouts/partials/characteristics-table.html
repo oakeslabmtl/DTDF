@@ -12,7 +12,7 @@
         <tr>
             <td class="characteristic-id">C<sub>2</sub></td>
             <td>Physical acting components</td>
-            <td>No data available</td>
+            <td>fan: Circulates air throughout box<br>heater: Raises the temperature of surrounding air<br>controller: Controls the fan and heater<br>power_supply: Powers electrical components</td>
         </tr>
         <tr>
             <td class="characteristic-id">C<sub>3</sub></td>
@@ -22,12 +22,12 @@
         <tr>
             <td class="characteristic-id">C<sub>4</sub></td>
             <td>Physical-to-virtual interaction</td>
-            <td>No data available</td>
+            <td>temp_readings_trans<br>controller_state_trans</td>
         </tr>
         <tr>
             <td class="characteristic-id">C<sub>5</sub></td>
             <td>Virtual-to-physical interaction</td>
-            <td>No data available</td>
+            <td>The controller in the PT sends sensor and actuator data on a periodic basis over RabbitMQ.</td>
         </tr>
         <tr>
             <td class="characteristic-id">C<sub>6</sub></td>
@@ -37,17 +37,17 @@
         <tr>
             <td class="characteristic-id">C<sub>7</sub></td>
             <td>Twinning time-scale</td>
-            <td>No data available</td>
+            <td>Slower than real-time<br>Real-time<br>The DT-to-PT synchronization occurs every time the PT sends a message to the DT (on a periodic basis).<br>Faster than real-time</td>
         </tr>
         <tr>
             <td class="characteristic-id">C<sub>8</sub></td>
             <td>Multiplicities</td>
-            <td>No data available</td>
+            <td>The current implementation has no multiplicities, however, it is possible to deploy multiple DTs for the same PT.</td>
         </tr>
         <tr>
             <td class="characteristic-id">C<sub>9</sub></td>
             <td>Life-cycle stages</td>
-            <td>No data available</td>
+            <td>The DT supports the design and the service phases. In the service phase, it supports creating, executing, saving, analyzing, evolving, and terminating.</td>
         </tr>
         <tr>
             <td class="characteristic-id">C<sub>10</sub></td>
@@ -62,27 +62,27 @@
         <tr>
             <td class="characteristic-id">C<sub>12</sub></td>
             <td>DT constellation</td>
-            <td>No data available</td>
+            <td>The orchestration of the system-as-a-whole is carried out by micro-services. These microservices set up the multiple components from configuration files, including the models and data, tools and enablers, services, and physical-to-virtual and virtual-to-physical interaction. It is possible to leave aside some of the micro-services when initializing the DT for testing purposes..</td>
         </tr>
         <tr>
             <td class="characteristic-id">C<sub>13</sub></td>
             <td>Twinning process and DT evolution</td>
-            <td>No data available</td>
+            <td>The PT-to-DT connection is done over Wi-Fi on a laptop using RabbitMQ.</td>
         </tr>
         <tr>
             <td class="characteristic-id">C<sub>14</sub></td>
             <td>Fidelity and validity considerations</td>
-            <td>No data available</td>
+            <td>The models have been calibrated against experimental data and the predictive accuracy of the best model is within 2°C. The models have been validated in a controlled environment.</td>
         </tr>
         <tr>
             <td class="characteristic-id">C<sub>15</sub></td>
             <td>DT technical connection</td>
-            <td>No data available</td>
+            <td>The PT-to-DT connection is done over Wi-Fi on a laptop using RabbitMQ.</td>
         </tr>
         <tr>
             <td class="characteristic-id">C<sub>16</sub></td>
             <td>DT hosting/deployment</td>
-            <td>No data available</td>
+            <td>The Incubator DT is deployed locally on a LAN.</td>
         </tr>
         <tr>
             <td class="characteristic-id">C<sub>17</sub></td>
@@ -92,21 +92,21 @@
         <tr>
             <td class="characteristic-id">C<sub>18</sub></td>
             <td>Horizontal integration</td>
-            <td>No data available</td>
+            <td>There is horizontal integration with the micro-services of the Incubator DT. The DT is able to exchange information with other information systems over RabbitMQ.</td>
         </tr>
         <tr>
             <td class="characteristic-id">C<sub>19</sub></td>
             <td>Data ownership and privacy</td>
-            <td>No data available</td>
+            <td>Datasets have been provided online to the public. No privacy-related data are stored.</td>
         </tr>
         <tr>
             <td class="characteristic-id">C<sub>20</sub></td>
             <td>Standardization</td>
-            <td>No data available</td>
+            <td>Communication is carried out using AMQP standard via RabbitMQ. Behavioral models have been produced following the FMI standard version 2.</td>
         </tr>
         <tr>
             <td class="characteristic-id">C<sub>21</sub></td>
             <td>Security and safety considerations</td>
-            <td>No data available</td>
+            <td>Communication can be TLS encrypted through the RabbitMQ broker. The physical controller counts with a safety consideration that turns off system if the temperature read is above 60°C or if the network connection is unstable.</td>
         </tr>
     </table>
