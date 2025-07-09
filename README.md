@@ -2,7 +2,7 @@
 
 This work is based on [1], which aims to create a reporting framework for Digital Twins (DTs) from 21 characteristics. We build their ontology vocabulary and description in Onotlogy Modeling Language (OML) in [openCAESAR Rosetta](https://github.com/opencaesar/oml-rosetta). We provide the example of an incubator (also described in [1]) for the OML description.
 
-We use our separately-developed tool called [DTInsight](https://github.com/oakeslab-polymtl/DTInsight) to generate an interactive conceptual architecture visualization of the DT based on this ontology. We call it a *DT Constellation*, and it is based on a previous paper [2]
+We use our separately-developed tool called [DTInsight](https://github.com/oakeslabmtl/DTInsight) to generate an interactive conceptual architecture visualization of the DT based on this ontology. We call it a *DT Constellation*, and it is based on a previous paper [2]
 
 We then generate a reporting page integrating the characteristics table and the conceptual architecture from a CI/CD pipeline. You can view it at https://oakeslab-polymtl.github.io/DTDF/.
 
