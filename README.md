@@ -4,7 +4,7 @@ This work is based on [1], which aims to create a reporting framework for Digita
 
 We use our separately-developed tool called [DTInsight](https://github.com/oakeslabmtl/DTInsight) to generate an interactive conceptual architecture visualization of the DT based on this ontology. We call it a *DT Constellation*, and it is based on a previous paper [2]
 
-We then generate a reporting page integrating the characteristics table and the conceptual architecture from a CI/CD pipeline. You can view it at https://oakeslab-polymtl.github.io/DTDF/.
+We then generate a reporting page integrating the characteristics table and the conceptual architecture from a CI/CD pipeline. You can view it at https://oakeslabmtl.github.io/DTDF/.
 
 ## Architecture
 
