@@ -18,7 +18,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           ssh-key: ${{ secrets.CI_DTINSIGHT }}
-          repository: oakeslab-polymtl/DTInsight
+          repository: oakeslabmtl/DTInsight
           ref: develop
           path: DTInsight
       
@@ -68,12 +68,12 @@ jobs:
       - name: Download Linux.zip
         run: |
           curl -L -o /home/runner/.local/share/Linux/Linux.zip \
-            https://github.com/oakeslab-polymtl/DTInsight/releases/download/stable/Linux.zip
+            https://github.com/oakeslabmtl/DTInsight/releases/download/stable/Linux.zip
 
       - name: Download Web.zip
         run: |
           curl -L -o /home/runner/.local/share/Web/Web.zip \
-            https://github.com/oakeslab-polymtl/DTInsight/releases/download/stable/Web.zip
+            https://github.com/oakeslabmtl/DTInsight/releases/download/stable/Web.zip
       
       - name: Unzip for Linux and set permissions
         run: |
