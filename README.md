@@ -6,10 +6,6 @@ We use our separately-developed tool called [DTInsight](https://github.com/oakes
 
 We then generate a reporting page integrating the characteristics table and the conceptual architecture from a CI/CD pipeline. You can view it at https://oakeslabmtl.github.io/DTDF/.
 
-## Architecture
-
-TODO: Diagram of the architecture
-
 ## The 21 Reported Characteristics
 
 - System under study
