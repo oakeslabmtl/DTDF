@@ -142,7 +142,7 @@ vocabulary <https://bentleyjoakes.github.io/DTDF/vocab/DTDFVocab#> as DTDFVocab 
 	// relations from data transmitted to data on DT side
 	relation entity DataInput [
 		from DataTransmitted
-		to Data
+		to Data, Model
 		forward asData
 		reverse fromData
 	]
