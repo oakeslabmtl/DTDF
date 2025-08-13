@@ -6,6 +6,10 @@ We use our separately-developed tool called [DTInsight](https://github.com/oakes
 
 We then generate a reporting page integrating the characteristics table and the conceptual architecture from a CI/CD pipeline. You can view it at https://oakeslabmtl.github.io/DTDF/.
 
+## OML vocabulary and description location
+
+The DTDF vocabulary can be found under `src/oml/bentleyjoakes.github.io/DTDF`, and the incubator DTDF description under `src/oml/bentleyjoakes.github.io/incubator`
+
 ## The 21 Reported Characteristics
 
 - System under study
