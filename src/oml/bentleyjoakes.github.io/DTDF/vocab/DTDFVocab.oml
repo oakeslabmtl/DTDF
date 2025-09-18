@@ -4,7 +4,7 @@ vocabulary <https://bentleyjoakes.github.io/DTDF/vocab/DTDFVocab#> as DTDFVocab 
 	
 	extends<https://bentleyjoakes.github.io/DTDF/vocab/base#> as base
 	
-	aspect Component < base:DescribedThing, base:ContainedElement
+	aspect Component < base:DescribedThing, base:ContainedElement, ImplementationThing
 	
 	// Set to true if the component can display a visualization
 	scalar property HasVisualization [
@@ -12,12 +12,14 @@ vocabulary <https://bentleyjoakes.github.io/DTDF/vocab/DTDFVocab#> as DTDFVocab 
 		range xsd:boolean
 		functional
 	]
-	
-	// Set to true if the component is not yet implemented but planned
-	scalar property IsPlanned [
-		domain Component
-		range xsd:boolean
-		functional
+
+	// Implementation state
+	concept Implementation < Component
+	aspect ImplementationThing
+	relation entity HasImplementation [
+		from ImplementationThing
+		to Implementation
+		forward hasImplementation
 	]
 	
 	aspect PurposeThing
