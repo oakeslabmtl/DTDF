@@ -1,267 +1,267 @@
 Services :
-	safe_adaptation
-		type : NamedIndividual/Component/Thing/DTComponent/Service/FidelityThing/ContainedElement/DescribedThing/ImplementationThing/TimeScaleThing/ConceptInstance
-		sameAs : safe_adaptation
-		atStage : operation
-		enabledBy : state_estimator/optimization_algs
-		provides : controller_control
 	anomaly_detector
-		type : NamedIndividual/Component/Thing/DTComponent/Service/FidelityThing/ContainedElement/DescribedThing/ImplementationThing/TimeScaleThing/ConceptInstance
-		sameAs : anomaly_detector
+		type : Thing/DTComponent/Service/NamedIndividual/Component/DescribedThing/ContainedElement/FidelityThing/ImplementationThing/TimeScaleThing/ConceptInstance
 		atStage : operation
-		enabledBy : state_estimator/anomaly_detector_enabler
 		provides : anomaly_warning
-	real_time_viz_service
-		type : NamedIndividual/Component/Thing/DTComponent/Service/FidelityThing/ContainedElement/DescribedThing/ImplementationThing/TimeScaleThing/ConceptInstance
-		sameAs : real_time_viz_service
+		enabledBy : anomaly_detector_enabler/state_estimator
+		sameAs : anomaly_detector
+	policy_optimization
+		type : Thing/DTComponent/Service/NamedIndividual/Component/DescribedThing/ContainedElement/FidelityThing/ImplementationThing/TimeScaleThing/ConceptInstance
 		atStage : operation
-		enabledBy : godot
+		provides : controller_control
+		enabledBy : dashboard_enabler
+		sameAs : policy_optimization
+	real_time_viz_service
+		type : Thing/DTComponent/Service/NamedIndividual/Component/DescribedThing/ContainedElement/FidelityThing/ImplementationThing/TimeScaleThing/ConceptInstance
+		atStage : operation
 		provides : real_time_viz
 		HasVisualization : true
-	policy_optimization
-		type : NamedIndividual/Component/Thing/DTComponent/Service/FidelityThing/ContainedElement/DescribedThing/ImplementationThing/TimeScaleThing/ConceptInstance
-		sameAs : policy_optimization
-		atStage : operation
-		enabledBy : dashboard_enabler
-		provides : controller_control
+		enabledBy : godot
+		sameAs : real_time_viz_service
 	heater_state_estimation_service
-		type : NamedIndividual/Component/Thing/DTComponent/Service/FidelityThing/ContainedElement/DescribedThing/ImplementationThing/TimeScaleThing/ConceptInstance
-		sameAs : heater_state_estimation_service
+		type : Thing/DTComponent/Service/NamedIndividual/Component/DescribedThing/ContainedElement/FidelityThing/ImplementationThing/TimeScaleThing/ConceptInstance
 		atStage : operation
-		enabledBy : state_estimator
 		provides : heater_state_estimation
-	what_if_sim
-		type : NamedIndividual/Component/Thing/DTComponent/Service/FidelityThing/ContainedElement/DescribedThing/ImplementationThing/TimeScaleThing/ConceptInstance
-		sameAs : what_if_sim
+		enabledBy : state_estimator
+		sameAs : heater_state_estimation_service
+	safe_adaptation
+		type : Thing/DTComponent/Service/NamedIndividual/Component/DescribedThing/ContainedElement/FidelityThing/ImplementationThing/TimeScaleThing/ConceptInstance
 		atStage : operation
-		enabledBy : simulator
+		provides : controller_control
+		enabledBy : optimization_algs/state_estimator
+		sameAs : safe_adaptation
+	what_if_sim
+		type : Thing/DTComponent/Service/NamedIndividual/Component/DescribedThing/ContainedElement/FidelityThing/ImplementationThing/TimeScaleThing/ConceptInstance
+		atStage : operation
 		provides : what_if_sim_results
+		enabledBy : simulator
+		sameAs : what_if_sim
 Enablers :
-	simulator
-		type : NamedIndividual/Component/Thing/DTComponent/Enabler/FidelityThing/ContainedElement/DescribedThing/ImplementationThing/ConceptInstance
-		sameAs : simulator
-		enables : what_if_sim
-		hasInput : pt_model/controller_model/temp_readings_historical/env_model/pt_and_env_model
-	state_estimator
-		type : NamedIndividual/Component/Thing/DTComponent/Enabler/FidelityThing/ContainedElement/DescribedThing/ImplementationThing/ConceptInstance
-		sameAs : state_estimator
-		enables : safe_adaptation/anomaly_detector/heater_state_estimation_service
-		hasInput : four_para_model/ANN_state_estimation_model/ANN_model/two_para_model/controller_model
 	anomaly_detector_enabler
-		type : NamedIndividual/Component/Thing/DTComponent/Enabler/FidelityThing/ContainedElement/DescribedThing/ImplementationThing/ConceptInstance
-		sameAs : anomaly_detector_enabler
+		type : Thing/DTComponent/Enabler/NamedIndividual/Component/DescribedThing/ContainedElement/FidelityThing/ImplementationThing/ConceptInstance
 		enables : anomaly_detector
-		hasInput : four_para_model/ANN_state_estimation_model/ANN_model/two_para_model
-	optimization_algs
-		type : NamedIndividual/Component/Thing/DTComponent/Enabler/FidelityThing/ContainedElement/DescribedThing/ImplementationThing/ConceptInstance
-		sameAs : optimization_algs
-		enables : safe_adaptation
-		hasInput : four_para_model/ANN_state_estimation_model/temp_readings_streaming/ANN_model/two_para_model/controller_model
+		hasInput : four_para_model/ANN_model/ANN_state_estimation_model/two_para_model
+		sameAs : anomaly_detector_enabler
 	dashboard_enabler
-		type : NamedIndividual/Component/Thing/DTComponent/Enabler/FidelityThing/ContainedElement/DescribedThing/ImplementationThing/ConceptInstance
-		sameAs : dashboard_enabler
+		type : Thing/DTComponent/Enabler/NamedIndividual/Component/DescribedThing/ContainedElement/FidelityThing/ImplementationThing/ConceptInstance
 		enables : policy_optimization
-		hasInput : four_para_model/ANN_state_estimation_model/temp_readings_streaming/ANN_model/two_para_model
-	godot
-		type : NamedIndividual/Component/Thing/DTComponent/Enabler/FidelityThing/ContainedElement/DescribedThing/ImplementationThing/ConceptInstance
-		sameAs : godot
-		enables : real_time_viz_service
+		hasInput : four_para_model/ANN_model/ANN_state_estimation_model/temp_readings_streaming/two_para_model
+		sameAs : dashboard_enabler
+	optimization_algs
+		type : Thing/DTComponent/Enabler/NamedIndividual/Component/DescribedThing/ContainedElement/FidelityThing/ImplementationThing/ConceptInstance
+		enables : safe_adaptation
+		hasInput : four_para_model/ANN_model/ANN_state_estimation_model/controller_model/temp_readings_streaming/two_para_model
+		sameAs : optimization_algs
+	state_estimator
+		type : Thing/DTComponent/Enabler/NamedIndividual/Component/DescribedThing/ContainedElement/FidelityThing/ImplementationThing/ConceptInstance
+		enables : anomaly_detector/heater_state_estimation_service/safe_adaptation
+		hasInput : four_para_model/ANN_model/ANN_state_estimation_model/controller_model/two_para_model
+		sameAs : state_estimator
+	simulator
+		type : Thing/DTComponent/Enabler/NamedIndividual/Component/DescribedThing/ContainedElement/FidelityThing/ImplementationThing/ConceptInstance
+		enables : what_if_sim
+		hasInput : controller_model/env_model/pt_and_env_model/pt_model/temp_readings_historical
+		sameAs : simulator
 	docker
-		type : NamedIndividual/Component/Thing/DTComponent/Enabler/FidelityThing/ContainedElement/DescribedThing/ImplementationThing/ConceptInstance
+		type : Thing/DTComponent/Enabler/NamedIndividual/Component/DescribedThing/ContainedElement/FidelityThing/ImplementationThing/ConceptInstance
 		sameAs : docker
+	godot
+		type : Thing/DTComponent/Enabler/NamedIndividual/Component/DescribedThing/ContainedElement/FidelityThing/ImplementationThing/ConceptInstance
+		enables : real_time_viz_service
+		sameAs : godot
 	influx_db
-		type : NamedIndividual/Component/Thing/DTComponent/Enabler/FidelityThing/ContainedElement/DescribedThing/ImplementationThing/ConceptInstance
+		type : Thing/DTComponent/Enabler/NamedIndividual/Component/DescribedThing/ContainedElement/FidelityThing/ImplementationThing/ConceptInstance
 		sameAs : influx_db
 	rabbit_mq
-		type : NamedIndividual/Component/Thing/DTComponent/Enabler/FidelityThing/ContainedElement/DescribedThing/ImplementationThing/ConceptInstance
-		sameAs : rabbit_mq
+		type : Thing/DTComponent/Enabler/NamedIndividual/Component/DescribedThing/ContainedElement/FidelityThing/ImplementationThing/ConceptInstance
 		IsCommEnabler : true
+		sameAs : rabbit_mq
 Models :
 	four_para_model
-		type : NamedIndividual/Component/Thing/DTComponent/Model/FidelityThing/ContainedElement/DescribedThing/ImplementationThing/Input/ConceptInstance
+		type : Thing/DTComponent/Model/NamedIndividual/Component/Input/DescribedThing/ContainedElement/FidelityThing/ImplementationThing/ConceptInstance
 		file_loc_str : models/plant_models/four_parameters_model/four_parameter_model.py
+		inputTo : anomaly_detector_enabler/dashboard_enabler/optimization_algs/state_estimator
 		sameAs : four_para_model
-		inputTo : state_estimator/anomaly_detector_enabler/optimization_algs/dashboard_enabler
-	pt_model
-		type : NamedIndividual/Component/Thing/DTComponent/Model/FidelityThing/ContainedElement/DescribedThing/ImplementationThing/Input/ConceptInstance
-		sameAs : pt_model
-		inputTo : simulator
-	ANN_state_estimation_model
-		type : NamedIndividual/Component/Thing/DTComponent/Model/FidelityThing/ContainedElement/DescribedThing/ImplementationThing/Input/ConceptInstance
-		sameAs : ANN_state_estimation_model
-		inputTo : state_estimator/anomaly_detector_enabler/optimization_algs/dashboard_enabler
 	ANN_model
-		type : NamedIndividual/Component/Thing/DTComponent/Model/FidelityThing/ContainedElement/DescribedThing/ImplementationThing/Input/ConceptInstance
+		type : Thing/DTComponent/Model/NamedIndividual/Component/Input/DescribedThing/ContainedElement/FidelityThing/ImplementationThing/ConceptInstance
+		inputTo : anomaly_detector_enabler/dashboard_enabler/optimization_algs/state_estimator
 		sameAs : ANN_model
-		inputTo : state_estimator/anomaly_detector_enabler/optimization_algs/dashboard_enabler
-	two_para_model
-		type : NamedIndividual/Component/Thing/DTComponent/Model/FidelityThing/ContainedElement/DescribedThing/ImplementationThing/Input/ConceptInstance
-		sameAs : two_para_model
-		inputTo : state_estimator/anomaly_detector_enabler/optimization_algs/dashboard_enabler
+	ANN_state_estimation_model
+		type : Thing/DTComponent/Model/NamedIndividual/Component/Input/DescribedThing/ContainedElement/FidelityThing/ImplementationThing/ConceptInstance
+		inputTo : anomaly_detector_enabler/dashboard_enabler/optimization_algs/state_estimator
+		sameAs : ANN_state_estimation_model
 	controller_model
-		type : NamedIndividual/Component/Thing/DTComponent/Model/FidelityThing/ContainedElement/DescribedThing/ImplementationThing/Input/ConceptInstance
+		type : Thing/DTComponent/Model/NamedIndividual/Component/Input/DescribedThing/ContainedElement/FidelityThing/ImplementationThing/ConceptInstance
+		inputTo : optimization_algs/state_estimator/simulator
 		sameAs : controller_model
-		inputTo : simulator/state_estimator/optimization_algs
 	env_model
-		type : NamedIndividual/Component/Thing/DTComponent/Model/FidelityThing/ContainedElement/DescribedThing/ImplementationThing/Input/ConceptInstance
+		type : Thing/DTComponent/Model/NamedIndividual/Component/Input/DescribedThing/ContainedElement/FidelityThing/ImplementationThing/ConceptInstance
+		inputTo : simulator
 		sameAs : env_model
-		inputTo : simulator
 	pt_and_env_model
-		type : NamedIndividual/Component/Thing/DTComponent/Model/FidelityThing/ContainedElement/DescribedThing/ImplementationThing/Input/ConceptInstance
-		sameAs : pt_and_env_model
+		type : Thing/DTComponent/Model/NamedIndividual/Component/Input/DescribedThing/ContainedElement/FidelityThing/ImplementationThing/ConceptInstance
 		inputTo : simulator
+		sameAs : pt_and_env_model
+	pt_model
+		type : Thing/DTComponent/Model/NamedIndividual/Component/Input/DescribedThing/ContainedElement/FidelityThing/ImplementationThing/ConceptInstance
+		inputTo : simulator
+		sameAs : pt_model
+	two_para_model
+		type : Thing/DTComponent/Model/NamedIndividual/Component/Input/DescribedThing/ContainedElement/FidelityThing/ImplementationThing/ConceptInstance
+		inputTo : anomaly_detector_enabler/dashboard_enabler/optimization_algs/state_estimator
+		sameAs : two_para_model
 ProvidedThings :
-	dashboard_viz
-		type : NamedIndividual/Component/ConnectionComponent/Thing/Insight/ContainedElement/DescribedThing/ImplementationThing/ProvidedThing/TimeScaleThing/ConceptInstance
-		hasTimeScale : slower_trt
-		sameAs : dashboard_viz
 	anomaly_warning
-		type : NamedIndividual/Component/ConnectionComponent/Thing/Insight/ContainedElement/DescribedThing/ImplementationThing/ProvidedThing/TimeScaleThing/ConceptInstance
+		type : ConnectionComponent/Thing/Insight/NamedIndividual/Component/DescribedThing/ContainedElement/ImplementationThing/ProvidedThing/TimeScaleThing/ConceptInstance
 		hasTimeScale : slower_trt
 		desc : anomaly detection
-		sameAs : anomaly_warning
 		providedBy : anomaly_detector
-	real_time_viz
-		type : NamedIndividual/Component/ConnectionComponent/Thing/Insight/ContainedElement/DescribedThing/ImplementationThing/ProvidedThing/TimeScaleThing/ConceptInstance
-		hasTimeScale : rt
-		desc : 3D visualization of the current state
-		sameAs : real_time_viz
-		providedBy : real_time_viz_service
-	dashboard
-		type : NamedIndividual/Component/ConnectionComponent/Thing/Insight/ContainedElement/DescribedThing/ImplementationThing/ProvidedThing/TimeScaleThing/ConceptInstance
-		hasTimeScale : rt
-		desc : dashboard visualization of the current state and historical data
-		sameAs : dashboard
-	heater_state_estimation
-		type : NamedIndividual/Component/ConnectionComponent/Thing/Insight/ContainedElement/DescribedThing/ImplementationThing/ProvidedThing/TimeScaleThing/ConceptInstance
-		hasTimeScale : rt
-		desc : state estimation of the heater
-		sameAs : heater_state_estimation
-		providedBy : heater_state_estimation_service
-	what_if_sim_results
-		type : NamedIndividual/Component/ConnectionComponent/Thing/Insight/ContainedElement/DescribedThing/ImplementationThing/ProvidedThing/TimeScaleThing/ConceptInstance
-		hasTimeScale : faster_trt
-		desc :  what-if analysis for future behavior under different controller configurations
-		sameAs : what_if_sim_results
-		providedBy : what_if_sim
-	controller_control
-		type : NamedIndividual/Component/ConnectionComponent/Action/Thing/ContainedElement/DescribedThing/ImplementationThing/ProvidedThing/TimeScaleThing/AutomaticEnabledThing/ConceptInstance
-		hasTimeScale : rt
-		desc : control policy updates to the PT
-		sameAs : controller_control
-		providedBy : safe_adaptation/policy_optimization
+		sameAs : anomaly_warning
 	commands
-		type : NamedIndividual/Component/ConnectionComponent/Action/Thing/ContainedElement/DescribedThing/ImplementationThing/ProvidedThing/TimeScaleThing/AutomaticEnabledThing/ConceptInstance
+		type : ConnectionComponent/Action/Thing/NamedIndividual/Component/DescribedThing/ContainedElement/ImplementationThing/ProvidedThing/TimeScaleThing/AutomaticEnabledThing/ConceptInstance
 		hasTimeScale : rt
 		IsAutomatic : true
 		sameAs : commands
+	controller_control
+		type : ConnectionComponent/Action/Thing/NamedIndividual/Component/DescribedThing/ContainedElement/ImplementationThing/ProvidedThing/TimeScaleThing/AutomaticEnabledThing/ConceptInstance
+		hasTimeScale : rt
+		desc : control policy updates to the PT
+		providedBy : policy_optimization/safe_adaptation
+		sameAs : controller_control
+	dashboard
+		type : ConnectionComponent/Thing/Insight/NamedIndividual/Component/DescribedThing/ContainedElement/ImplementationThing/ProvidedThing/TimeScaleThing/ConceptInstance
+		hasTimeScale : rt
+		desc : dashboard visualization of the current state and historical data
+		sameAs : dashboard
+	dashboard_viz
+		type : ConnectionComponent/Thing/Insight/NamedIndividual/Component/DescribedThing/ContainedElement/ImplementationThing/ProvidedThing/TimeScaleThing/ConceptInstance
+		hasTimeScale : slower_trt
+		sameAs : dashboard_viz
+	heater_state_estimation
+		type : ConnectionComponent/Thing/Insight/NamedIndividual/Component/DescribedThing/ContainedElement/ImplementationThing/ProvidedThing/TimeScaleThing/ConceptInstance
+		hasTimeScale : rt
+		desc : state estimation of the heater
+		providedBy : heater_state_estimation_service
+		sameAs : heater_state_estimation
+	real_time_viz
+		type : ConnectionComponent/Thing/Insight/NamedIndividual/Component/DescribedThing/ContainedElement/ImplementationThing/ProvidedThing/TimeScaleThing/ConceptInstance
+		hasTimeScale : rt
+		desc : 3D visualization of the current state
+		providedBy : real_time_viz_service
+		sameAs : real_time_viz
+	what_if_sim_results
+		type : ConnectionComponent/Thing/Insight/NamedIndividual/Component/DescribedThing/ContainedElement/ImplementationThing/ProvidedThing/TimeScaleThing/ConceptInstance
+		hasTimeScale : faster_trt
+		desc :  what-if analysis for future behavior under different controller configurations
+		providedBy : what_if_sim
+		sameAs : what_if_sim_results
 Data transmitted :
 	controller_state_trans
-		type : NamedIndividual/DataTransmitted/Component/ConnectionComponent/Thing/ContainedElement/DescribedThing/ImplementationThing/TimeScaleThing/AutomaticEnabledThing/ConceptInstance
+		type : ConnectionComponent/Thing/DataTransmitted/NamedIndividual/Component/DescribedThing/ContainedElement/ImplementationThing/TimeScaleThing/AutomaticEnabledThing/ConceptInstance
 		hasTimeScale : rt
 		IsAutomatic : true
-		sameAs : controller_state_trans
 		asData : controller_state
+		sameAs : controller_state_trans
 	temp_readings_trans
-		type : NamedIndividual/DataTransmitted/Component/ConnectionComponent/Thing/ContainedElement/DescribedThing/ImplementationThing/TimeScaleThing/AutomaticEnabledThing/ConceptInstance
+		type : ConnectionComponent/Thing/DataTransmitted/NamedIndividual/Component/DescribedThing/ContainedElement/ImplementationThing/TimeScaleThing/AutomaticEnabledThing/ConceptInstance
 		hasTimeScale : rt
-		producedFrom : temp_sensor_1/temp_sensor_2/temp_sensor_3
 		IsAutomatic : true
-		sameAs : temp_readings_trans
+		producedFrom : temp_sensor_1/temp_sensor_2/temp_sensor_3
 		asData : temp_readings_streaming
+		sameAs : temp_readings_trans
 Sensors :
 	temp_sensor_1
-		type : NamedIndividual/Component/SensingComponent/ConnectionComponent/Thing/ContainedElement/DescribedThing/ImplementationThing/TimeScaleThing/ConceptInstance
+		type : ConnectionComponent/Thing/SensingComponent/NamedIndividual/Component/DescribedThing/ContainedElement/ImplementationThing/TimeScaleThing/ConceptInstance
+		producedData : temp_readings_trans
 		sameAs : temp_sensor_1
-		producedData : temp_readings_trans
 	temp_sensor_2
-		type : NamedIndividual/Component/SensingComponent/ConnectionComponent/Thing/ContainedElement/DescribedThing/ImplementationThing/TimeScaleThing/ConceptInstance
+		type : ConnectionComponent/Thing/SensingComponent/NamedIndividual/Component/DescribedThing/ContainedElement/ImplementationThing/TimeScaleThing/ConceptInstance
+		producedData : temp_readings_trans
 		sameAs : temp_sensor_2
-		producedData : temp_readings_trans
 	temp_sensor_3
-		type : NamedIndividual/Component/SensingComponent/ConnectionComponent/Thing/ContainedElement/DescribedThing/ImplementationThing/TimeScaleThing/ConceptInstance
-		sameAs : temp_sensor_3
+		type : ConnectionComponent/Thing/SensingComponent/NamedIndividual/Component/DescribedThing/ContainedElement/ImplementationThing/TimeScaleThing/ConceptInstance
 		producedData : temp_readings_trans
+		sameAs : temp_sensor_3
 System :
 	controller
-		type : NamedIndividual/ActingComponent/Component/ConnectionComponent/Thing/ContainedElement/DescribedThing/ImplementationThing/TimeScaleThing/ConceptInstance
+		type : ActingComponent/ConnectionComponent/Thing/NamedIndividual/Component/DescribedThing/ContainedElement/ImplementationThing/TimeScaleThing/ConceptInstance
 		desc : Controls the fan and heater
+		isContainedIn : incubator
 		sameAs : controller
-		isContainedIn : incubator
 	fan
-		type : NamedIndividual/ActingComponent/Component/ConnectionComponent/Thing/ContainedElement/DescribedThing/ImplementationThing/TimeScaleThing/ConceptInstance
+		type : ActingComponent/ConnectionComponent/Thing/NamedIndividual/Component/DescribedThing/ContainedElement/ImplementationThing/TimeScaleThing/ConceptInstance
 		desc : Circulates air throughout box
+		isContainedIn : incubator
 		sameAs : fan
-		isContainedIn : incubator
 	heater
-		type : NamedIndividual/ActingComponent/Component/ConnectionComponent/Thing/ContainedElement/DescribedThing/ImplementationThing/TimeScaleThing/ConceptInstance
+		type : ActingComponent/ConnectionComponent/Thing/NamedIndividual/Component/DescribedThing/ContainedElement/ImplementationThing/TimeScaleThing/ConceptInstance
 		desc : Raises the temperature of surrounding air
+		isContainedIn : incubator
 		sameAs : heater
-		isContainedIn : incubator
 	power_supply
-		type : NamedIndividual/ActingComponent/Component/ConnectionComponent/Thing/ContainedElement/DescribedThing/ImplementationThing/TimeScaleThing/ConceptInstance
+		type : ActingComponent/ConnectionComponent/Thing/NamedIndividual/Component/DescribedThing/ContainedElement/ImplementationThing/TimeScaleThing/ConceptInstance
 		desc : Powers electrical components
-		sameAs : power_supply
 		isContainedIn : incubator
+		sameAs : power_supply
 System environnement :
 	surface
-		type : NamedIndividual/Component/Thing/ContainedElement/DescribedThing/ImplementationThing/ConceptInstance
+		type : Thing/NamedIndividual/Component/DescribedThing/ContainedElement/ImplementationThing/ConceptInstance
 		desc : Where the incubator is placed
+		isContainedIn : room
 		sameAs : surface
-		isContainedIn : room
 	surrounding_air
-		type : NamedIndividual/Component/Thing/ContainedElement/DescribedThing/ImplementationThing/ConceptInstance
+		type : Thing/NamedIndividual/Component/DescribedThing/ContainedElement/ImplementationThing/ConceptInstance
 		desc : Heat sink
-		sameAs : surrounding_air
 		isContainedIn : room
+		sameAs : surrounding_air
 Data :
-	temp_readings_streaming
-		type : NamedIndividual/Component/Thing/DTComponent/Data/FidelityThing/ContainedElement/DescribedThing/ImplementationThing/Input/ConceptInstance
-		sameAs : temp_readings_streaming
-		inputTo : optimization_algs/dashboard_enabler
-		fromData : temp_readings_trans
-	temp_readings_historical
-		type : NamedIndividual/Component/Thing/DTComponent/Data/FidelityThing/ContainedElement/DescribedThing/ImplementationThing/Input/ConceptInstance
-		sameAs : temp_readings_historical
-		inputTo : simulator
 	controller_state
-		type : NamedIndividual/Component/Thing/DTComponent/Data/FidelityThing/ContainedElement/DescribedThing/ImplementationThing/Input/ConceptInstance
-		sameAs : controller_state
+		type : Thing/DTComponent/Data/NamedIndividual/Component/Input/DescribedThing/ContainedElement/FidelityThing/ImplementationThing/ConceptInstance
 		fromData : controller_state_trans
+		sameAs : controller_state
+	temp_readings_historical
+		type : Thing/DTComponent/Data/NamedIndividual/Component/Input/DescribedThing/ContainedElement/FidelityThing/ImplementationThing/ConceptInstance
+		inputTo : simulator
+		sameAs : temp_readings_historical
+	temp_readings_streaming
+		type : Thing/DTComponent/Data/NamedIndividual/Component/Input/DescribedThing/ContainedElement/FidelityThing/ImplementationThing/ConceptInstance
+		fromData : temp_readings_trans
+		inputTo : dashboard_enabler/optimization_algs
+		sameAs : temp_readings_streaming
 Rabbit exchange :
 	incubator_exchange
-		type : NamedIndividual/ExchangeName/Thing/ConceptInstance
+		type : Thing/ExchangeName/NamedIndividual/ConceptInstance
 		exchange_name_str : Incubator_AMQP
 		sameAs : incubator_exchange
 Rabbit route :
 	incubator_routing_key
-		type : NamedIndividual/RoutingKey/Thing/ConceptInstance
+		type : Thing/RoutingKey/NamedIndividual/ConceptInstance
 		exchange : incubator_exchange
 		routing_key_str : incubator.record.driver.state
 		sameAs : incubator_routing_key
 Rabbit source :
 	incubator_source
-		type : NamedIndividual/Source/Thing/ConceptInstance
+		type : Thing/Source/NamedIndividual/ConceptInstance
 		routeKey : incubator_routing_key
 		source_str : low_level_driver
 		sameAs : incubator_source
 Rabbit message listener :
 	sensor1ML
-		type : NamedIndividual/MessageListener/Thing/ConceptInstance
+		type : Thing/MessageListener/NamedIndividual/ConceptInstance
 		route : incubator_source
 		sourceComponent : temp_sensor_1
 		MLSource : t2
 		MLTarget : temp_sensor_1
 		sameAs : sensor1ML
 	sensor2ML
-		type : NamedIndividual/MessageListener/Thing/ConceptInstance
+		type : Thing/MessageListener/NamedIndividual/ConceptInstance
 		route : incubator_source
 		sourceComponent : temp_sensor_2
 		MLSource : t2
 		MLTarget : temp_sensor_2
 		sameAs : sensor2ML
 	sensor3ML
-		type : NamedIndividual/MessageListener/Thing/ConceptInstance
+		type : Thing/MessageListener/NamedIndividual/ConceptInstance
 		route : incubator_source
 		sourceComponent : temp_sensor_3
 		MLSource : t3
