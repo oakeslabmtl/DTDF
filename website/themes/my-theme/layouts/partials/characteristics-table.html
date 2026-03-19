@@ -12,7 +12,7 @@
         <tr>
 			<td class="characteristic-id">C<sub>2</sub></td>
             <td>Physical acting components</td>
-            <td>controller: Controls the fan and heater<br>fan: Circulates air throughout box<br>heater: Raises the temperature of surrounding air<br>power_supply: Powers electrical components</td>
+            <td>fan: Circulates air throughout box<br>heater: Raises the temperature of surrounding air<br>controller: Controls the fan and heater<br>power_supply: Powers electrical components</td>
 		</tr>
         <tr>
 			<td class="characteristic-id">C<sub>3</sub></td>
@@ -22,7 +22,7 @@
         <tr>
 			<td class="characteristic-id">C<sub>4</sub></td>
             <td>Physical-to-virtual interaction</td>
-            <td>controller_state_trans<br>temp_readings_trans</td>
+            <td>temp_readings_trans<br>controller_state_trans</td>
 		</tr>
         <tr>
 			<td class="characteristic-id">C<sub>5</sub></td>
@@ -32,7 +32,7 @@
         <tr>
 			<td class="characteristic-id">C<sub>6</sub></td>
             <td>DT services</td>
-            <td>anomaly_detector<br>policy_optimization<br>real_time_viz_service<br>heater_state_estimation_service<br>safe_adaptation<br>what_if_sim</td>
+            <td>safe_adaptation<br>anomaly_detector<br>real_time_viz_service<br>policy_optimization<br>heater_state_estimation_service<br>what_if_sim</td>
 		</tr>
         <tr>
 			<td class="characteristic-id">C<sub>7</sub></td>
@@ -52,12 +52,12 @@
         <tr>
 			<td class="characteristic-id">C<sub>10</sub></td>
             <td>DT models and data</td>
-            <td>Model:<br>four_para_model<br>ANN_model<br>ANN_state_estimation_model<br>controller_model<br>env_model<br>pt_and_env_model<br>pt_model<br>two_para_model<br><br>Data:<br>controller_state<br>temp_readings_historical<br>temp_readings_streaming</td>
+            <td>Model:<br>pt_model<br>ANN_state_estimation_model<br>ANN_model<br>four_para_model<br>two_para_model<br>controller_model<br>env_model<br>pt_and_env_model<br><br>Data:<br>temp_readings_streaming<br>temp_readings_historical<br>controller_state</td>
 		</tr>
         <tr>
 			<td class="characteristic-id">C<sub>11</sub></td>
             <td>Tooling and enablers</td>
-            <td>anomaly_detector_enabler<br>dashboard_enabler<br>optimization_algs<br>state_estimator<br>simulator<br>docker<br>godot<br>influx_db<br>rabbit_mq</td>
+            <td>simulator<br>state_estimator<br>anomaly_detector_enabler<br>optimization_algs<br>dashboard_enabler<br>godot<br>docker<br>influx_db<br>rabbit_mq</td>
 		</tr>
         <tr>
 			<td class="characteristic-id">C<sub>12</sub></td>
@@ -87,7 +87,7 @@
         <tr>
 			<td class="characteristic-id">C<sub>17</sub></td>
             <td>Insights and decision making</td>
-            <td>anomaly_warning: anomaly detection<br>commands<br>controller_control: control policy updates to the PT<br>dashboard: dashboard visualization of the current state and historical data<br>dashboard_viz<br>heater_state_estimation: state estimation of the heater<br>real_time_viz: 3D visualization of the current state<br>what_if_sim_results:  what-if analysis for future behavior under different controller configurations</td>
+            <td>dashboard_viz<br>anomaly_warning: anomaly detection<br>real_time_viz: 3D visualization of the current state<br>dashboard: dashboard visualization of the current state and historical data<br>heater_state_estimation: state estimation of the heater<br>what_if_sim_results:  what-if analysis for future behavior under different controller configurations<br>controller_control: control policy updates to the PT<br>commands</td>
 		</tr>
         <tr>
 			<td class="characteristic-id">C<sub>18</sub></td>
