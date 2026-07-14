@@ -106,6 +106,7 @@ vocabulary <https://bentleyjoakes.github.io/DTDF/vocab/DTDFVocab#> as DTDFVocab 
 		to TimeScale
 		forward hasTimeScale
 	]
+	concept TimeScaleDescription < base:DescribedThing
 	
 	//------------------------------
 	// C8: Multiplicity
