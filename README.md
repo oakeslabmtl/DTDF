@@ -1,5 +1,9 @@
 # Digital Twin Description Framework (DTDF) Ontology
 
+[![DOI](https://img.shields.io/badge/DOI-10.1109%2Fmodels--c68889.2025.00030-blue)](https://doi.org/10.1109/models-c68889.2025.00030)
+[![arXiv](https://img.shields.io/badge/arXiv-2508.18431-b31b1b.svg)](https://arxiv.org/pdf/2508.18431)
+[![License: CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by-nc-sa/4.0/)
+
 This work is based on [1], which aims to create a reporting framework for Digital Twins (DTs) from 21 characteristics. We build their ontology vocabulary and description in Onotlogy Modeling Language (OML) in [openCAESAR Rosetta](https://github.com/opencaesar/oml-rosetta). We provide the example of an incubator (also described in [1]) for the OML description.
 
 We use our separately-developed tool called [DTInsight](https://github.com/oakeslabmtl/DTInsight) [2] to generate an interactive conceptual architecture visualization of the DT based on this ontology, called a *DT Constellation* [3].
