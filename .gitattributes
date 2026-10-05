@@ -1,0 +1,4 @@
+# gradlew runs inside the Linux dev container; a CRLF checkout on Windows breaks it there
+gradlew text eol=lf
+*.sh text eol=lf
+*.bat text eol=crlf

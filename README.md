@@ -14,6 +14,43 @@ We then generate a reporting page integrating the characteristics table and the 
 
 The DTDF vocabulary can be found under `src/oml/bentleyjoakes.github.io/DTDF`, and the incubator DTDF description under `src/oml/bentleyjoakes.github.io/incubator`
 
+## Running the project in a container
+
+A ready-made [dev container](https://containers.dev/) bundles Java 21, Gradle, Apache Jena Fuseki and the [OML Luxor](https://github.com/opencaesar/oml-luxor) editor, so nothing needs to be installed besides Docker and an editor.
+
+### Prerequisites
+
+- [Docker Desktop](https://www.docker.com/products/docker-desktop/) (on Windows, use the WSL 2 backend)
+- [VS Code](https://code.visualstudio.com/) with the [Dev Containers](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers) extension
+- [DTInsight](https://github.com/oakeslabmtl/DTInsight/releases/tag/stable) (Windows or Linux) to visualize the result
+- Optional, to save time on a slow network: `docker pull ghcr.io/oakeslabmtl/dtdf-tutorial:1.1` (~600 MB)
+
+### Open the project
+
+- One click: [open in Dev Containers](https://vscode.dev/redirect?url=vscode://ms-vscode-remote.remote-containers/cloneInVolume?url=https://github.com/oakeslabmtl/DTDF)
+- Or clone the repository, open the folder in VS Code, and choose **Reopen in Container**
+
+### Load the ontology into Fuseki
+
+In a terminal inside the container, run these as two separate commands:
+
+```bash
+./gradlew startFuseki
+./gradlew owlLoad
+```
+
+- Fuseki web UI: http://localhost:3030
+- SPARQL endpoint: http://localhost:3030/DTDF/sparql
+- In DTInsight, set the Fuseki endpoint to `http://localhost:3030/DTDF`, then click **Call Fuseki**
+
+After editing the OML files under `src/oml`, run `./gradlew owlLoad` again and reload in DTInsight. To see an OML file as a diagram, right-click it and choose **Open in Diagram**.
+
+### Troubleshooting
+
+- **Port 3030 is already in use**: stop any other Fuseki server or dev container of this project first.
+- **Fuseki seems stuck**: run `./gradlew stopFuseki`, then `./gradlew startFuseki`.
+- **After updating the container configuration**: rebuild the container. In editors without a rebuild command, delete the old container in Docker Desktop and reopen the folder in the container.
+
 ## The 21 Reported Characteristics
 
 - System under study

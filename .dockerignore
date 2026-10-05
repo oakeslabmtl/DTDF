@@ -1,0 +1,10 @@
+.git
+.gradle
+.fuseki
+.metadata
+.settings
+.devcontainer
+.vscode
+build
+website
+ci_screenshots
