@@ -1,0 +1,26 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Start Fuseki",
+      "type": "shell",
+      "command": "./gradlew startFuseki",
+      "windows": { "command": ".\\gradlew.bat startFuseki" },
+      "problemMatcher": []
+    },
+    {
+      "label": "Load ontology into Fuseki (owlLoad)",
+      "type": "shell",
+      "command": "./gradlew owlLoad",
+      "windows": { "command": ".\\gradlew.bat owlLoad" },
+      "problemMatcher": []
+    },
+    {
+      "label": "Stop Fuseki",
+      "type": "shell",
+      "command": "./gradlew stopFuseki",
+      "windows": { "command": ".\\gradlew.bat stopFuseki" },
+      "problemMatcher": []
+    }
+  ]
+}

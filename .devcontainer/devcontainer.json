@@ -1,0 +1,33 @@
+{
+  "name": "DTDF tutorial",
+  // Pre-built from ./Dockerfile for amd64 and arm64. To build locally instead, replace this line with
+  // "build": { "dockerfile": "Dockerfile", "context": ".." }
+  "image": "ghcr.io/oakeslabmtl/dtdf-tutorial:1.1",
+  "remoteUser": "vscode",
+  "init": true,
+  // startFuseki binds to the container's loopback only (--localhost), and not every editor honours
+  // forwardPorts (Antigravity doesn't). So Docker publishes the port itself and socat relays it to
+  // Fuseki. Bound to the laptop's 127.0.0.1 so the update endpoint isn't exposed on the network.
+  "runArgs": [
+    "-p",
+    "127.0.0.1:3030:3031"
+  ],
+  "portsAttributes": {
+    "3030": {
+      "onAutoForward": "ignore"
+    },
+    "3031": {
+      "onAutoForward": "ignore"
+    }
+  },
+  // A pid file left by a previous container can match an unrelated process and turn startFuseki into a no-op.
+  // setsid detaches socat so it outlives this lifecycle command.
+  "postStartCommand": "rm -f .fuseki/fuseki.pid && setsid -f socat TCP-LISTEN:3031,fork,reuseaddr TCP:127.0.0.1:3030 >/dev/null 2>&1",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "/opt/oml-luxor/oml-luxor.vsix"
+      ]
+    }
+  }
+}

@@ -20,13 +20,14 @@ buildscript {
 		mavenLocal()
 		mavenCentral()
 	}
+	// Pinned so builds stay offline-reproducible (dev container cache) and in step with OML Luxor 2.13
 	dependencies {
-        classpath 'io.opencaesar.owl:owl-fuseki-gradle:+'
-        classpath 'io.opencaesar.owl:owl-query-gradle:+'
-        classpath 'io.opencaesar.owl:owl-load-gradle:+'
-        classpath 'io.opencaesar.owl:owl-reason-gradle:+'
-        classpath 'io.opencaesar.oml:oml-merge-gradle:+'
-        classpath 'io.opencaesar.adapters:oml2owl-gradle:+'
+        classpath 'io.opencaesar.owl:owl-fuseki-gradle:2.15.0'
+        classpath 'io.opencaesar.owl:owl-query-gradle:2.15.0'
+        classpath 'io.opencaesar.owl:owl-load-gradle:2.15.0'
+        classpath 'io.opencaesar.owl:owl-reason-gradle:2.15.0'
+        classpath 'io.opencaesar.oml:oml-merge-gradle:2.13.0'
+        classpath 'io.opencaesar.adapters:oml2owl-gradle:2.13.1'
 	}
 }
 
@@ -52,7 +53,7 @@ repositories {
  * The OML dependencies
  */
 dependencies {
-    oml "io.opencaesar.ontologies:core-vocabularies:5.+"
+    oml "io.opencaesar.ontologies:core-vocabularies:5.1.0"
 }
 
 /*
